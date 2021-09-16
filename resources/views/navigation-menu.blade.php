@@ -1,129 +1,102 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<nav x-data="{ open: false }" class="nav w-full z-50 bg-primary">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
+            <div class="flex w-full">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
-                    </a>
+                    <a href="/"><img class="logo" src="{{ asset('images/logo.svg') }}" alt="AmitKK Logo" width="120" height="45"/></a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div>
-            </div>
-
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <!-- Teams Dropdown -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="ml-3 relative">
-                        <x-jet-dropdown align="right" width="60">
+                <div class="hidden space-x-2 md:space-x-8 sm:-my-px sm:flex sm:ml-10 w-full justify-end">
+                    <div class="dd">
+                        <x-jet-dropdown align="right" width="48" height="100%">
                             <x-slot name="trigger">
-                                <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
-                                        {{ Auth::user()->currentTeam->name }}
-
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </span>
+                                <span class="text-white h-full hover:cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 hover:border-action focus:outline-none focus:border-action transition">Services<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
                             </x-slot>
-
                             <x-slot name="content">
-                                <div class="w-60">
-                                    <!-- Team Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Team') }}
-                                    </div>
-
-                                    <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                        {{ __('Team Settings') }}
-                                    </x-jet-dropdown-link>
-
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                            {{ __('Create New Team') }}
-                                        </x-jet-dropdown-link>
-                                    @endcan
-
+                                <x-jet-dropdown-link href="/digital-marketing-company-in-delhi">Digital Marketing</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/seo-company-in-delhi">SEO</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/social-media-marketing-agency">Social Media Marketing</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/graphic-design-company">Graphics</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/app-development-in-delhi">App Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/website-designing-company-in-delhi">Website Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/offline-marketing-services">Offline Marketing</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/content-writing-services">Content Writing</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/guest-post">Guest Blogging</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/lead-generation-companies">Lead Generation</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/ecommerce-website-development-in-delhi">E-Commerce</x-jet-dropdown-link>
+                                @if(Auth::user())
                                     <div class="border-t border-gray-100"></div>
-
-                                    <!-- Team Switcher -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Switch Teams') }}
-                                    </div>
-
-                                    @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" />
-                                    @endforeach
-                                </div>
+                                    <form method="POST" action="{{ route('logout') }}">@csrf <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</x-jet-dropdown-link></form>
+                                @endif
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
-                @endif
-
-                <!-- Settings Dropdown -->
+                    <div class="dd">
+                        <x-jet-dropdown align="right" width="48" height="100%">
+                            <x-slot name="trigger">
+                                <span class="text-white h-full hover:cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 hover:border-action focus:outline-none focus:border-action transition">Technology<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-jet-dropdown-link href="/wordpress-website-development">Wordpress Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/laravel-developer">Laravel Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/react-development-company">React JS Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/node-js-developer">NodeJS Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/vue-js-development-company">VueJS Development</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/quasar-developer">Quasar Development</x-jet-dropdown-link>
+                            </x-slot>
+                        </x-jet-dropdown>
+                    </div>
+                    <div class="dd">
+                        <x-jet-dropdown align="right" width="48" height="100%">
+                            <x-slot name="trigger">
+                                <span class="text-white h-full hover:cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 hover:border-action focus:outline-none focus:border-action transition">Portfolio<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-jet-dropdown-link href="/web-portfolio">Web Portfolio</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/graphics-portfolio">Graphics Portfolio</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/video-portfolio">Video Portfolio</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/images/portfolio/AmitKK-Portfolio.pdf" target="_blank">Company Portfolio</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="/images/portfolio/amit_kumar_khare_resume.pdf" target="_blank">My Resume</x-jet-dropdown-link>
+                            </x-slot>
+                        </x-jet-dropdown>
+                    </div>
+                    <x-jet-nav-link href="/blog" :active="request()->routeIs('blog')" class="text-white hover:text-white hover:border-action focus:text-white">{{ __('Blog') }}</x-jet-nav-link>
+                </div>
+            </div>
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="ml-3 relative">
-                    <x-jet-dropdown align="right" width="48">
+                    <x-jet-dropdown align="right" width="48" height="100%">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </button>
                             @else
-                                <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
-                                        {{ Auth::user()->name }}
+                                @if(Auth::user())
+                                    <span class="inline-flex rounded-md">
+                                        <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                            {{ Auth::user()->name }}
 
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </span>
+                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </span>
+                                @endif
                             @endif
                         </x-slot>
-
                         <x-slot name="content">
-                            <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
-                            </div>
-
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
-                            </x-jet-dropdown-link>
-
-                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
-                                </x-jet-dropdown-link>
+                            @if(Auth::user())
+                                <div class="block px-4 py-2 text-xs text-gray-400">{{ __('Manage Account') }}</div>
+                                <x-jet-dropdown-link href="/admin/meta">{{ __('Admin Panel') }}</x-jet-dropdown-link>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</x-jet-dropdown-link>
+                                </form>
                             @endif
-
-                            <div class="border-t border-gray-100"></div>
-
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-jet-dropdown-link>
-                            </form>
                         </x-slot>
                     </x-jet-dropdown>
                 </div>
             </div>
-
-            <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -134,82 +107,67 @@
             </div>
         </div>
     </div>
-
-    <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="flex items-center px-4">
-                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                    <div class="flex-shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                    </div>
-                @endif
-
-                <div>
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                </div>
+        <div class="pb-2 space-y-1">
+            <div class="mobiledd">
+                <x-jet-dropdown align="right" width="48" height="100%">
+                    <x-slot name="trigger">
+                        <span class="inline-flex text-white hover:cursor-pointer pl-3 py-2 border-l-4 border-transparent items-center">Services<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-jet-dropdown-link href="/digital-marketing-company-in-delhi">Digital Marketing</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/seo-company-in-delhi">SEO</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/social-media-marketing-agency">Social Media Marketing</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/graphic-design-company">Graphics</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/app-development-in-delhi">App Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/website-designing-company-in-delhi">Website Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/offline-marketing-services">Offline Marketing</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/content-writing-services">Content Writing</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/guest-post">Guest Blogging</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/lead-generation-companies">Lead Generation</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/ecommerce-website-development-in-delhi">E-Commerce</x-jet-dropdown-link>
+                        @if(Auth::user())
+                            <div class="border-t border-gray-100"></div>
+                            <form method="POST" action="{{ route('logout') }}">@csrf <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</x-jet-dropdown-link></form>
+                        @endif
+                    </x-slot>
+                </x-jet-dropdown>
             </div>
-
-            <div class="mt-3 space-y-1">
-                <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
-                </x-jet-responsive-nav-link>
-
-                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                    <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                        {{ __('API Tokens') }}
-                    </x-jet-responsive-nav-link>
-                @endif
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-jet-responsive-nav-link>
-                </form>
-
-                <!-- Team Management -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="border-t border-gray-200"></div>
-
-                    <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Manage Team') }}
-                    </div>
-
-                    <!-- Team Settings -->
-                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                        {{ __('Team Settings') }}
-                    </x-jet-responsive-nav-link>
-
-                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                            {{ __('Create New Team') }}
-                        </x-jet-responsive-nav-link>
-                    @endcan
-
-                    <div class="border-t border-gray-200"></div>
-
-                    <!-- Team Switcher -->
-                    <div class="block px-4 py-2 text-xs text-gray-400">
-                        {{ __('Switch Teams') }}
-                    </div>
-
-                    @foreach (Auth::user()->allTeams() as $team)
-                        <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
-                    @endforeach
+            <div class="mobiledd">
+                <x-jet-dropdown align="right" width="48" height="100%">
+                    <x-slot name="trigger">
+                        <span class="inline-flex text-white hover:cursor-pointer pl-3 py-2 border-l-4 border-transparent items-center">Technology<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-jet-dropdown-link href="/wordpress-website-development">WordPress Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/laravel-developer">Laravel Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/react-development-company">React JS Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/node-js-developer">Node JS Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/vue-js-development-company">Vue JS Development</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/quasar-developer">Quasar Development</x-jet-dropdown-link>
+                    </x-slot>
+                </x-jet-dropdown>
+            </div>
+            <div class="mobiledd">
+                <x-jet-dropdown align="right" width="48" height="100%">
+                    <x-slot name="trigger">
+                        <span class="inline-flex text-white hover:cursor-pointer pl-3 py-2 border-l-4 border-transparent items-center">Portfolio<svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
+                    </x-slot>
+                    <x-slot name="content">
+                        <x-jet-dropdown-link href="/web-portfolio">Web Portfolio</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/graphics-portfolio">Graphics Portfolio</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/video-portfolio">Video Portfolio</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/images/portfolio/AmitKK-Portfolio.pdf" target="_blank">Company Portfolio</x-jet-dropdown-link>
+                        <x-jet-dropdown-link href="/images/portfolio/amit_kumar_khare_resume.pdf" target="_blank">My Resume</x-jet-dropdown-link>
+                    </x-slot>
+                </x-jet-dropdown>
+            </div>
+            <x-jet-responsive-nav-link href="/blog" :active="request()->routeIs('blog')" class="text-white hover:cursor-pointer">{{ __('Blog') }}</x-jet-responsive-nav-link>
+        </div>
+        <div class="pb-2 border-t border-gray-200">
+            <div class="space-y-1">
+                @if(Auth::user())
+                    <form method="POST" action="{{ route('logout') }}">@csrf <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</x-jet-responsive-nav-link></form>
                 @endif
             </div>
         </div>

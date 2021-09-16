@@ -1,0 +1,121 @@
+$primary : #14213d;
+$action: #ad2e24;
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+.form-control, body {
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+img, img:focus, input, input:focus, button, button:focus, a, a:focus{
+    outline: none;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+input, input:focus{
+    box-shadow: none !important;
+}
+p, ul li{
+    text-align: justify;
+    line-height: 2em;
+    color: #2e2e38;
+}
+.logo{
+    max-width: 120px;
+}
+.dd >div, .dd >div div:first-child{
+    height: 100%;
+}
+.mobiledd{
+    .relative{
+        div:last-child{
+           width: 100%;
+           a{
+            --tw-text-opacity: 1;
+            color: rgba(107, 114, 128, var(--tw-text-opacity));
+           }
+        }
+    }
+}
+.amitShadow{
+    box-shadow: 1px 1px 5px #aaa;
+    transition: .5s all;
+    &:hover{
+        box-shadow: 0 14px 28px #bfbfbf40, 0 10px 10px #84848438;
+    }
+}
+.content{
+    h1,h2,h3,h4,h5,h6{
+        margin-top: 1em;
+        font-size: 25px;
+        font-weight: 600;
+        color: #2e2e38;
+    }
+}
+.oneliner{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+}
+.container{
+    width: 85%;
+    max-width: 85%;
+    margin: 0 auto
+}
+.amitBtnGroup{
+    &:hover{
+        .amitBtn{
+            box-shadow: 1px 2px 3px $action;
+            color: #fff;
+            &:before{
+                opacity: 0;
+                transform: scale(1.2);
+            }
+            &:after{
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+    .amitBtn{
+        box-shadow: 0 1px 10px $action;
+        &:before, &:after{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border-radius: 9999px;
+            transition: .5s all;
+        }
+        &:before{
+            background: #fff;
+            opacity: 1;
+        }
+        &:after{
+            background: $action;
+            opacity: 0;
+            transform: scale(0);
+        }
+    }   
+}
+.amitBtnHovered:hover .amitBtn{
+    color: #fff;
+    box-shadow: 1px 2px 3px $action;
+    &:before{
+        opacity: 0;
+        transform: scale(1.2);
+    }
+    &:after{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+nav{
+    border-bottom: 1px solid #fff6;
+}
