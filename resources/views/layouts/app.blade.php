@@ -23,7 +23,7 @@
             @livewire('parts.footer')
         </div>
         @stack('modals')
-        @if( Request::route()->getName()!= 'addblog' && Request::route()->getName()!= 'updateblog')
+        @if( Request::route()->getName()!= 'addblog' && Request::route()->getName()!= 'updateblog' && Request::route()->getName()!= 'addproduct' && Request::route()->getName()!= 'updateproduct')
             <script src="/js/jquery-3.1.0.js"></script>
         @endif
         <script src="{{ mix('js/app.js') }}" defer></script>
