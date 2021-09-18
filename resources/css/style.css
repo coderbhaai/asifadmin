@@ -76,4 +76,27 @@ p, ul li {
 nav {
   border-bottom: 1px solid #fff6;
 }
+
+.web {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .web {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
+  .container {
+    width: 98%;
+    max-width: 98%;
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+}
 /*# sourceMappingURL=style.css.map */
