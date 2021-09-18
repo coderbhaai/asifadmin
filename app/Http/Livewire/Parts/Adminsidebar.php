@@ -8,12 +8,12 @@ class Adminsidebar extends Component
 {
     public $data =[
         // [ "link"=>"dashboard", "name"=>"Dashboard" ],
-        // [ "link"=>"meta", "name"=>"Meta Tags" ],
-        // [ "link"=>"blogmeta", "name"=>"Blog Meta" ],
-        // [ "link"=>"adminblog", "name"=>"Blog" ],
-        // [ "link"=>"admincomments", "name"=>"Comments" ],
+        [ "link"=>"meta", "name"=>"Meta Tags" ],
+        [ "link"=>"blogmeta", "name"=>"Blog Meta" ],
+        [ "link"=>"adminblog", "name"=>"Blog" ],
+        [ "link"=>"admincomments", "name"=>"Comments" ],
         // [ "link"=>"adminSubscription", "name"=>"Subscription" ],
-        // [ "link"=>"adminusers", "name"=>"Users" ],
+        [ "link"=>"adminusers", "name"=>"Users" ],
         // [ "link"=>"adminsitemap", "name"=>"Sitemap" ],
         // [ "link"=>"adminschema", "name"=>"Schema" ],
     ];
