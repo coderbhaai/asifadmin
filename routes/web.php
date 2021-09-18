@@ -18,6 +18,7 @@ use App\Http\Livewire\Admin\Admincomments;
 use App\Http\Livewire\Admin\Adminmeta;
 use App\Http\Livewire\Admin\Adminusers;
 use App\Http\Livewire\Admin\Updateblog;
+use App\Http\Livewire\Admin\Adminsubscribe;
 
 
 Route::get('/', Home::class)->name('home');
@@ -40,6 +41,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/addblog', Addblog::class)->name('addblog');
         Route::get('/admin/updateblog/{id}', Updateblog::class)->name('updateblog');
         Route::get('/admin/users', Adminusers::class)->name('adminusers');
+        Route::get('/admin/subscription', Adminsubscribe::class)->name('adminSubscription');
     });
 });
 
