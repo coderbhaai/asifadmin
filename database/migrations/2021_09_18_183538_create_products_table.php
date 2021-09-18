@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->mediumText('shortdesc');
             $table->mediumText('longdesc');
             $table->string('price');
-            $table->string('sale')->nullable();
+            $table->string('sale');
             $table->string('rating')->nullable();
             $table->integer('status');
             $table->timestamps();

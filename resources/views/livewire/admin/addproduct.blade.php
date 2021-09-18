@@ -32,7 +32,7 @@
                     <div wire:ignore class="col-span-6">
                         <label for="catSelected" class="block text-sm font-medium text-gray-700">Category</label>
                         <select id='selectCat' wire:model="catSelected" multiple class="w-full" required>
-                            @foreach($tagOptions as  $i)
+                            @foreach($catOptions as  $i)
                                 <option value="{{$i->id}}">{{ $i->name }}</option>
                             @endforeach
                         </select>
@@ -44,6 +44,16 @@
                                 <option value="{{$i->id}}">{{ $i->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="col-span-6">
+                        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                        <input type="number" wire:model="price" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Price" required>
+                        @error('price') <span class="error" ...>{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-span-6">
+                        <label for="sale" class="block text-sm font-medium text-gray-700">Sale Price</label>
+                        <input type="number" wire:model="sale" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Sale Price" required>
+                        @error('sale') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-12">
                         <label for="title" class="block text-sm font-medium text-gray-700">Meta Title</label>
