@@ -1,9 +1,7 @@
+@livewire('navigation-menu')
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
+        <x-slot name="logo"><img src="{{ asset('images/logo.png') }}" class="w-48 mx-auto mb-5"/></x-slot>
         <div x-data="{ recovery: false }">
             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
                 {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
@@ -55,3 +53,4 @@
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
+@livewire('parts.footer')

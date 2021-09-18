@@ -1,9 +1,7 @@
+@livewire('navigation-menu')
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
+        <x-slot name="logo"><img src="{{ asset('images/logo.png') }}" class="w-48 mx-auto mb-5"/></x-slot>
         <div class="mb-4 text-sm text-gray-600">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
@@ -32,3 +30,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+@livewire('parts.footer')

@@ -1,9 +1,7 @@
+@livewire('navigation-menu')
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
+        <x-slot name="logo"><img src="{{ asset('images/logo.png') }}" class="w-48 mx-auto mb-5"/></x-slot>
         <div class="mb-4 text-sm text-gray-600">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
@@ -26,3 +24,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+@livewire('parts.footer')

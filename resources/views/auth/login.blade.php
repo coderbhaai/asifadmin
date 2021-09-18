@@ -1,9 +1,7 @@
+@livewire('navigation-menu')
 <x-guest-layout>
     <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
+        <x-slot name="logo"><img src="{{ asset('images/logo.png') }}" class="w-48 mx-auto mb-5"/></x-slot>
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))
@@ -46,3 +44,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+@livewire('parts.footer')
