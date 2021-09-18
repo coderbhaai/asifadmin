@@ -22,6 +22,7 @@ use App\Http\Livewire\Admin\Adminsubscribe;
 use App\Http\Livewire\Admin\Adminproducts;
 use App\Http\Livewire\Admin\Addproduct;
 use App\Http\Livewire\Admin\Updateproduct;
+use App\Http\Livewire\Admin\Adminmaster;
 
 Route::get('/', Home::class)->name('home');
 Route::get("/contact", Contact::class)->name('contact');
@@ -36,6 +37,7 @@ Route::get('/category/{url}', Blogpage::class);
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin/dashboard', function () { return view('dashboard'); })->name('dashboard');
+        Route::get('/admin/masters', Adminmaster::class)->name('adminmaster');
         Route::get('/admin/meta', Adminmeta::class)->name('meta');
         Route::get('/admin/comments', Admincomments::class)->name('admincomments');
         Route::get('/admin/blogmeta', Adminblogmeta::class)->name('blogmeta');

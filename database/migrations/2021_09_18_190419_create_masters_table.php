@@ -17,8 +17,8 @@ class CreateMastersTable extends Migration
             $table->id();
             $table->string('type');
             $table->string('name');
-            $table->string('tab1');
-            $table->string('tab2');
+            $table->string('tab1')->nullable();
+            $table->string('tab2')->nullable();
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ class Adminsidebar extends Component
 {
     public $data =[
         // [ "link"=>"dashboard", "name"=>"Dashboard" ],
+        [ "link"=>"adminmaster", "name"=>"Masters" ],
         [ "link"=>"meta", "name"=>"Meta Tags" ],
         [ "link"=>"blogmeta", "name"=>"Blog Meta" ],
         [ "link"=>"adminblog", "name"=>"Blog" ],
