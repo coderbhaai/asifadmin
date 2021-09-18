@@ -19,7 +19,9 @@ use App\Http\Livewire\Admin\Adminmeta;
 use App\Http\Livewire\Admin\Adminusers;
 use App\Http\Livewire\Admin\Updateblog;
 use App\Http\Livewire\Admin\Adminsubscribe;
-
+use App\Http\Livewire\Admin\Adminproducts;
+use App\Http\Livewire\Admin\Addproduct;
+use App\Http\Livewire\Admin\Updateproduct;
 
 Route::get('/', Home::class)->name('home');
 Route::get("/contact", Contact::class)->name('contact');
@@ -42,6 +44,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/updateblog/{id}', Updateblog::class)->name('updateblog');
         Route::get('/admin/users', Adminusers::class)->name('adminusers');
         Route::get('/admin/subscription', Adminsubscribe::class)->name('adminSubscription');
+        Route::get('/admin/products', Adminproducts::class)->name('adminproducts');
+        Route::get('/admin/addproduct', Addproduct::class)->name('addproduct');
+        Route::get('/admin/updateproduct/{id}', Updateproduct::class)->name('updateproduct');
     });
 });
 
