@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Master extends Model
 {
     use HasFactory;
-    protected $fillable = ['type','name', 'tab1', 'tab2'];
+    protected $fillable = ['type','name', 'tab1', 'tab2', 'url'];
     public function scopeSearch($query, $val){
         return $query
         ->where('masters.type', 'like', '%'.$val.'%')
