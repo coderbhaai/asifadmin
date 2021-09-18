@@ -20,6 +20,7 @@
                 </header>
             @endif
             <main>{{ $slot }}</main>
+            @livewire('parts.footer')
         </div>
         @stack('modals')
         @if( Request::route()->getName()!= 'addblog' && Request::route()->getName()!= 'updateblog')

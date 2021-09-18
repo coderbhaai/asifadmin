@@ -231,6 +231,9 @@
             </div>
         </div>
     </section>
+    @livewire('parts.subscribe')
+
+
 
 
 

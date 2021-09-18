@@ -3,7 +3,7 @@
         <div class="flex justify-between h-16">
             <div class="flex w-full">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/"><img class="logo" src="{{ asset('images/logo.svg') }}" alt="AmitKK Logo" width="120" height="45"/></a>
+                    <a href="/"><img class="logo w-16" src="{{ asset('images/logo.png') }}" alt="AmitKK Logo" width="120" height="45"/></a>
                 </div>
                 <div class="hidden space-x-2 md:space-x-8 sm:-my-px sm:flex sm:ml-10 w-full justify-end">
                     <div class="dd">
