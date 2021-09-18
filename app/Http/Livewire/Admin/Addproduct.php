@@ -46,7 +46,6 @@ class Addproduct extends Component
             $name = time().'-'.$loop->index.$i->getClientOriginalName(); $i->storeAs('public/product', $name);
             array_push( $img, $name );
         }
-        $fileName2 = $this->smallImg->getClientOriginalName(); $this->smallImg->storeAs('public/blog', $fileName2);        
 
         Product::create([
             'type' =>  $this->typeSelected,
