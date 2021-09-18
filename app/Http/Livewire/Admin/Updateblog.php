@@ -32,6 +32,8 @@ class Updateblog extends Component
             $this->title =          $meta->metaTitle;
             $this->description =    $meta->description;
         }
+
+        // dd($this->content);
     }
     
     public function render(){

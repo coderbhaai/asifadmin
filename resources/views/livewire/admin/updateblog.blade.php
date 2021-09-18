@@ -21,11 +21,13 @@
                             <label for="url" class="block text-sm font-medium text-gray-700">Cover Image</label>
                             <input type="file" wire:model="cover_img">
                             @error('cover_img') <span class="error text-action font-bold">{{ $message }}</span> @enderror
+                            @if($oldcover_img) <img src="/storage/blog/{{$oldcover_img}}" alt="" class="w-20 mt-2"/> @endif
                         </div>
                         <div class="col-span-6">
                             <label for="url" class="block text-sm font-medium text-gray-700">Small Image</label>
                             <input type="file" wire:model="smallImg">
                             @error('smallImg') <span class="error text-action font-bold">{{ $message }}</span> @enderror
+                            @if($oldsmallImg) <img src="/storage/blog/{{$oldsmallImg}}" alt="" class="w-20 mt-2"/> @endif
                         </div>
                         <div wire:ignore class="col-span-6">
                             <label for="catSelected" class="block text-sm font-medium text-gray-700">Category</label>
@@ -67,7 +69,7 @@
     </div>
     <script src="{{asset('/js/jquery-3.1.0.js')}}"></script>
     <script src="{{asset('/js/select2.js')}}"></script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script>
         const editor = CKEDITOR.replace('content');
         editor.on('change', function(event){ @this.set('content', event.editor.getData()); });
