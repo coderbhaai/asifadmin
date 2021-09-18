@@ -7,23 +7,23 @@
             <form wire:submit.prevent="submit" method="POST">
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-6">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
-                        <input type="text" wire:model="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" wire:model="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title" required>
                         @error('name') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">
                         <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
-                        <input type="text" wire:model="url" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add URL">
+                        <input type="text" wire:model="url" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add URL" required>
                         @error('url') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">
                         <label for="url" class="block text-sm font-medium text-gray-700">Images</label>
-                        <input type="file" wire:model="images" mutliple>
+                        <input type="file" wire:model="images" mutliple required>
                         @error('images') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div wire:ignore class="col-span-6">
                         <label for="typeSelected" class="block text-sm font-medium text-gray-700">Type of Product</label>
-                        <select class="w-full form-control" wire:model="typeSelected" id="selectType">
+                        <select class="w-full form-control" wire:model="typeSelected" id="selectType" required>
                             @foreach($typeOptions as  $i)
                                 <option value="{{$i->id}}">{{ $i->name }}</option>
                             @endforeach
@@ -31,7 +31,7 @@
                     </div>
                     <div wire:ignore class="col-span-6">
                         <label for="catSelected" class="block text-sm font-medium text-gray-700">Category</label>
-                        <select id='selectCat' wire:model="catSelected" multiple class="w-full">
+                        <select id='selectCat' wire:model="catSelected" multiple class="w-full" required>
                             @foreach($tagOptions as  $i)
                                 <option value="{{$i->id}}">{{ $i->name }}</option>
                             @endforeach
@@ -39,7 +39,7 @@
                     </div>
                     <div wire:ignore class="col-span-6">
                         <label for="tagSelected" class="block text-sm font-medium text-gray-700">Tags</label>
-                        <select id='selectTag' wire:model="tagSelected" multiple class="w-full">
+                        <select id='selectTag' wire:model="tagSelected" multiple class="w-full" required>
                             @foreach($tagOptions as  $i)
                                 <option value="{{$i->id}}">{{ $i->name }}</option>
                             @endforeach
@@ -47,21 +47,21 @@
                     </div>
                     <div class="col-span-12">
                         <label for="title" class="block text-sm font-medium text-gray-700">Meta Title</label>
-                        <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title">
+                        <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title" required/>
                         @error('title') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-12">
                         <label for="description" class="block text-sm font-medium text-gray-700">Meta Description</label>
-                        <input type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description"/>
+                        <input type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description" required/>
                         @error('description') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div wire:ignore class="col-span-12">
                         <label for="shortdesc" class="block text-sm font-medium text-gray-700">Short Description</label>
-                        <textarea wire:model="shortdesc" class="form-control required" name="shortdesc" id="shortdesc"></textarea>
+                        <textarea wire:model="shortdesc" class="form-control required" name="shortdesc" id="shortdesc" required></textarea>
                     </div>
                     <div wire:ignore class="col-span-12">
                         <label for="longdesc" class="block text-sm font-medium text-gray-700">Long Description</label>
-                        <textarea wire:model="longdesc" class="form-control required" name="longdesc" id="longdesc"></textarea>
+                        <textarea wire:model="longdesc" class="form-control required" name="longdesc" id="longdesc" required></textarea>
                     </div>
                 </div>
                 <div class="bg-gray-50 text-right mt-5">
