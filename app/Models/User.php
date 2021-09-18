@@ -29,6 +29,12 @@ class User extends Authenticatable
         'password', 'role', 'status'
     ];
 
+    public function scopeSearch($query, $val){
+        return $query
+        ->where('email', 'like', '%'.$val.'%')
+        ->Orwhere('name', 'like', '%'.$val.'%');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
