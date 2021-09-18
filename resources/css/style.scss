@@ -65,57 +65,6 @@ p, ul li{
     max-width: 85%;
     margin: 0 auto
 }
-.amitBtnGroup{
-    &:hover{
-        .amitBtn{
-            box-shadow: 1px 2px 3px $action;
-            color: #fff;
-            &:before{
-                opacity: 0;
-                transform: scale(1.2);
-            }
-            &:after{
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-    }
-    .amitBtn{
-        box-shadow: 0 1px 10px $action;
-        &:before, &:after{
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            border-radius: 9999px;
-            transition: .5s all;
-        }
-        &:before{
-            background: #fff;
-            opacity: 1;
-        }
-        &:after{
-            background: $action;
-            opacity: 0;
-            transform: scale(0);
-        }
-    }   
-}
-.amitBtnHovered:hover .amitBtn{
-    color: #fff;
-    box-shadow: 1px 2px 3px $action;
-    &:before{
-        opacity: 0;
-        transform: scale(1.2);
-    }
-    &:after{
-        opacity: 1;
-        transform: scale(1);
-    }
-}
 nav{
     border-bottom: 1px solid #fff6;
 }
