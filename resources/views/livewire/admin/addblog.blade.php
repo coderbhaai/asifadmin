@@ -8,22 +8,22 @@
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-6">
                         <label for="name" class="block text-sm font-medium text-gray-700">Title</label>
-                        <input type="text" wire:model="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title">
+                        <input type="text" wire:model="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title" required>
                         @error('name') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">
                         <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
-                        <input type="text" wire:model="url" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add URL">
+                        <input type="text" wire:model="url" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add URL" required>
                         @error('url') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">
                         <label for="url" class="block text-sm font-medium text-gray-700">Cover Image</label>
-                        <input type="file" wire:model="cover_img">
+                        <input type="file" wire:model="cover_img" required>
                         @error('cover_img') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">
                         <label for="url" class="block text-sm font-medium text-gray-700">Small Image</label>
-                        <input type="file" wire:model="smallImg">
+                        <input type="file" wire:model="smallImg" required>
                         @error('smallImg') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div wire:ignore class="col-span-6">
@@ -44,17 +44,17 @@
                     </div>
                     <div class="col-span-12">
                         <label for="title" class="block text-sm font-medium text-gray-700">Meta Title</label>
-                        <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title">
+                        <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title" required>
                         @error('title') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-12">
                         <label for="description" class="block text-sm font-medium text-gray-700">Meta Description</label>
-                        <input type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description"/>
+                        <input type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description" required/>
                         @error('description') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>                        
                     <div wire:ignore class="col-span-12">
                         <label for="content" class="block text-sm font-medium text-gray-700">Blog Content</label>
-                        <textarea wire:model="content" class="form-control required" name="content" id="content"></textarea>
+                        <textarea wire:model="content" class="form-control required" name="content" id="content" required></textarea>
                     </div>
                 </div>
                 <div class="bg-gray-50 text-right mt-5">

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Coursereview extends Model
 {
     use HasFactory;
+    protected $fillable = ['courseid', 'userid', 'review', 'rating', 'status'];
+    public function scopeSearch($query, $val){
+        return $query
+        ->where('coursereviews.courseid', 'like', '%'.$val.'%');
+    }
 }

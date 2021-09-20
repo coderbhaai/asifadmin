@@ -15,6 +15,11 @@ class CreateCoursereviewsTable extends Migration
     {
         Schema::create('coursereviews', function (Blueprint $table) {
             $table->id();
+            $table->integer('courseid');
+            $table->integer('userid');
+            $table->mediumText('review');
+            $table->mediumText('rating');
+            $table->integer('status');
             $table->timestamps();
         });
     }

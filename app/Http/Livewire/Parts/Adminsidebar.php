@@ -18,6 +18,8 @@ class Adminsidebar extends Component
         // [ "link"=>"adminsitemap", "name"=>"Sitemap" ],
         // [ "link"=>"adminschema", "name"=>"Schema" ],
         [ "link"=>"adminproducts", "name"=>"Products" ],
+        [ "link"=>"admincourses", "name"=>"Courses" ],
+        [ "link"=>"coursereviews", "name"=>"Reviews" ],
     ];
 
     public function render(){

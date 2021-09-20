@@ -68,9 +68,8 @@ class Updateproduct extends Component
             'sale' => 'required',
             'title' => 'required',
             'description' => 'required',
+            'status' => 'required',
         ]);
-        // dd('check');
-
         $url = strtolower( str_replace(' ', '-', $this->url) );
         $img = [];
         if(count($this->images)){
@@ -83,7 +82,7 @@ class Updateproduct extends Component
                 array_push( $img, $name );
             }
         }else{
-            $img = $oldimages;
+            $img = $this->oldimages;
         }
 
         Product::where('id', $this->data_id)->update([
@@ -98,7 +97,7 @@ class Updateproduct extends Component
             'price' =>  $this->price,
             'sale' =>  $this->sale,
             'rating' => json_encode( [0, 0] ),
-            'status' => 1,
+            'status' => $this->status,
         ]);
         
         Meta::where('id', $this->metaId)->update([
