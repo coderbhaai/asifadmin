@@ -46,31 +46,7 @@
             </div>
         </div>
     </section>
-    <section class="courses">
-        <div class="container py-10">
-            <h2 class="text-xl md:text-3xl font-bold mb-2">Find The Right Online Course For You</h2>
-            <p class="text-base">You don't have to struggle alone, you've got our assistance and help.</p>
-            <div class="flex grid grid-cols-12 gap-x-5 overflow-hidden mt-10" >
-                @for($i=0; $i< 6; $i++)
-                    <div class="rounded col-span-12 md:col-span-4 p-4 mb-5">
-                        <img src="/images/courses/1.jpg" alt="">
-                        <div class="flex items-center justify-between">
-                            <p>45 Lessons</p>
-                            <p>4.5 (50)</p>
-                        </div>
-                        <h2 class="text-xl md:text-2xl font-bold mt-2 mb-2">Become Product Manager learn the skills & job.</h2>
-                        <div class="flex items-center justify-between">
-                            <p>Rs.1000</p>
-                            <p>Know Details</p>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-            <div class="text-center mt-12 group">
-                <a href="" class="relative overflow-hidden uppercase z-50 inline-block text-center text-white py-3 px-6 rounded-full bg-green">Explore</a>
-            </div>
-        </div>
-    </section>
+    @livewire('parts.suggestcourses')
     <section class="expertise">
         <div class="container py-10">
             <h2 class="text-center text-xl md:text-3xl font-bold mb-2">Our Expertise</h2>
@@ -81,7 +57,7 @@
                     <div class="tint absolute left-0 right-0 h-full top-0"></div>
                     <div class="text text-center absolute left-0 right-0 z-50">
                         <h3 class="text-white mb-3 text-xl">Online Learning</h3>
-                        <a href="" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Start A Class Today</a>
+                        <a href="/courses" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Start A Class Today</a>
                     </div>
                 </div>
                 <div class="rounded col-span-12 md:col-span-6 relative group">
@@ -89,7 +65,7 @@
                     <div class="tint absolute left-0 right-0 h-full top-0"></div>
                     <div class="text text-center absolute left-0 right-0 z-50">
                         <h3 class="text-white mb-3 text-xl">e-Fashion</h3>
-                        <a href="" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Explore the Self</a>
+                        <a href="/shop" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Explore the Self</a>
                     </div>
                 </div>
             </div>
@@ -192,26 +168,7 @@
             </div>
         </div>
     </section>
-    <section class="bestselling imgArrows">
-        <div class="container">
-            <div class="swiper-container py-10 bestsellingSlider">
-                <h2 class="text-xl md:text-3xl font-bold mb-2">Best Selling Products</h2>
-                <div class="swiper-wrapper">
-                    @for($i=0; $i< 6; $i++)
-                        <div class="swiper-slide block md:flex items-center justify-around pt-10">
-                            <a href="">
-                                <img src="/images/static/fashioncat-1.jpg" alt="Website Development in Delhi" class="md:pr-4 max-w-400" width="380" height="380"/>
-                                <h2 class="text-xl text-center font-bold mt-5">The Indian Casual</h2>
-                                <p class="text-center">Rs. 350</p>
-                            </a>
-                        </div>
-                    @endfor
-                </div>
-                <div class="swiper-button-next pr-3"></div>
-                <div class="swiper-button-prev pl-3"></div>
-            </div>
-        </div>
-    </section>
+    @livewire('parts.suggestproducts')
     <section class="testis imgArrows imgArrowsWhite py-12">
         <div class="container">
             <h2 class="text-white text-center text-xl md:text-3xl font-bold mb-2">Testimonials</h2>
@@ -231,19 +188,8 @@
             </div>
         </div>
     </section>
+    <div class="container pt-10">@livewire('parts.suggestblogs')</div>
     @livewire('parts.subscribe')
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="{{ asset('/js/swiper.js') }}"></script>
     <script>
         var swiper = new Swiper(".fashionSlider", {
