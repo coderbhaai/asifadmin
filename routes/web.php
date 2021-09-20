@@ -23,6 +23,12 @@ use App\Http\Livewire\Admin\Adminproducts;
 use App\Http\Livewire\Admin\Addproduct;
 use App\Http\Livewire\Admin\Updateproduct;
 use App\Http\Livewire\Admin\Adminmaster;
+use App\Http\Livewire\Admin\Addcourse;
+use App\Http\Livewire\Admin\Updatecourse;
+use App\Http\Livewire\Admin\Admincourses;
+use App\Http\Livewire\Admin\Coursereviews;
+
+
 
 Route::get('/', Home::class)->name('home');
 Route::get("/contact", Contact::class)->name('contact');
@@ -49,6 +55,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/products', Adminproducts::class)->name('adminproducts');
         Route::get('/admin/addproduct', Addproduct::class)->name('addproduct');
         Route::get('/admin/updateproduct/{id}', Updateproduct::class)->name('updateproduct');
+        Route::get('/admin/courses', Admincourses::class)->name('admincourses');
+        Route::get('/admin/addcourse', Addcourse::class)->name('addcourse');
+        Route::get('/admin/updatecourse/{id}', Updatecourse::class)->name('updatecourse');
+        Route::get('/admin/coursereviews', Coursereviews::class)->name('coursereviews');
     });
 });
 
