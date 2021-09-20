@@ -4,7 +4,7 @@
         <ul>
             @foreach($category as $i)
                 <li class="mb-2">
-                    <a href="/category/{{$i->url}}" class="font-medium select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-2 pl-4   transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                    <a href="/category/{{$i->url}}" class="font-medium select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-2 pl-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
                         {{$i->name}}
                     </a>
                 </li>
@@ -16,7 +16,7 @@
         <ul>
             @foreach($tag as $i)
                 <li class="mb-2">
-                    <a href="/tag/{{$i->url}}" class="font-medium select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                    <a href="/tag/{{$i->url}}" class="font-medium select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
                         {{$i->name}}
                     </a>
                 </li>

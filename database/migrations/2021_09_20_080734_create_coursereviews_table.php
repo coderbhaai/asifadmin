@@ -15,6 +15,7 @@ class CreateCoursereviewsTable extends Migration
     {
         Schema::create('coursereviews', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
             $table->integer('courseid');
             $table->integer('userid');
             $table->mediumText('review');
