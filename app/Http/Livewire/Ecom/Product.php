@@ -28,7 +28,7 @@ class Product extends Component
             $this->rating =             json_decode( $this->data->rating );
             $this->images =             json_decode( $this->data->images );
             $this->activeImage =        json_decode( $this->data->images )[0];
-            $this->reviews =            Coursereview::where('courseid', $this->data->id)->where('status', 1)->get();
+            $this->reviews =            Coursereview::where('type', 'Product')->where('courseid', $this->data->id)->where('status', 1)->get();
         }else{
             return redirect('/404');
         }
