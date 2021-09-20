@@ -17,13 +17,14 @@
                         @error('url') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">
-                        <label for="url" class="block text-sm font-medium text-gray-700">Images</label>
-                        <input type="file" wire:model="images" mutliple required>
+                        <label for="images" class="block text-sm font-medium text-gray-700">Images</label>
+                        <input type="file" wire:model="images" multiple required>
                         @error('images') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div wire:ignore class="col-span-6">
                         <label for="typeSelected" class="block text-sm font-medium text-gray-700">Type of Product</label>
                         <select class="w-full form-control" wire:model="typeSelected" id="selectType" required>
+                            <option value="">Select Type</option>
                             @foreach($typeOptions as  $i)
                                 <option value="{{$i->id}}">{{ $i->name }}</option>
                             @endforeach

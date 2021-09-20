@@ -3,12 +3,18 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\Master;
 use App\Models\Meta;
+use App\Models\Master;
+use App\Models\Product;
+use Livewire\WithFileUploads;
 
 class Addproduct extends Component
 {
-    public $typeSelected, $catSelected, $tagSelected, $images, $type, $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $status, $title, $description;
+    use WithFileUploads;
+
+    public $typeSelected, $catSelected, $tagSelected, $type, $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $status, $title, $description;
+
+    public $images = [];
 
     public function render(){
         $typeOptions = Master::where('type', 'prodType')->select('id', 'name')->get();
@@ -26,9 +32,11 @@ class Addproduct extends Component
     public function submit(){
         $cat = []; foreach($this->catSelected as $i){ array_push($cat, (int)$i); }
         $tag = []; foreach($this->tagSelected as $i){ array_push($tag, (int)$i); }
-
+        
         $this->validate([
-            'type' => 'required',
+            'typeSelected' => 'required',
+            'catSelected' => 'required',
+            'tagSelected' => 'required',
             'name' => 'required',
             'url' => 'required',
             'shortdesc' => 'required',
@@ -42,8 +50,9 @@ class Addproduct extends Component
 
         $url = strtolower( str_replace(' ', '-', $this->url) );
         $img = [];
-        foreach ($this->images as $i) {
-            $name = time().'-'.$loop->index.$i->getClientOriginalName(); $i->storeAs('public/product', $name);
+
+        foreach ($this->images as $key=>$i) {
+            $name = time().'-'.$key.'-'.$i->getClientOriginalName(); $i->storeAs('public/product', $name);
             array_push( $img, $name );
         }
 
@@ -68,6 +77,6 @@ class Addproduct extends Component
             'description' => $this->description
         ]);
         session()->flash('message', 'Blog Created Successfully.');
-        return redirect(route('adminblog') );
+        return redirect(route('adminproducts') );
     }
 }

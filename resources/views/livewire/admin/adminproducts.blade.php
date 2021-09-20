@@ -34,18 +34,20 @@
                     <th class="py-2 relative"><span class="text-white">Image</span></th>
                     <th class="py-2 relative"><span class="text-white">Category</span></th>
                     <th class="py-2 relative"><span class="text-white">Tag</span></th>
+                    <th class="py-2 relative"><span class="text-white">Status</span></th>
                     <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('updated_at')"><span class="text-white">Date</span> @include('partials.sorticon', ['field'=>'updated_at'])</th>
                     <th class="py-2"><span class="text-white">Action</span></th>
                 </tr>
                 </thead>
-                <tbody class="">
+                <tbody class=""> 
                     @foreach($data as $i)
                         <tr class="">
                             <td class="px-1 py-1 text-center">{{ $loop->index +1}}</td>
                             <td class="px-1 py-1"><a href="/product/{{$i->url}}" target="_blank">{{$i->title}}</a></td>
-                            <td class="px-1 py-1"><img src="/storage/product/{{$i->smallImg}}" class="w-32"/></td>
-                            <td class="px-1 py-1">{{$i->category}}</td>
-                            <td class="px-1 py-1">{{$i->tag}}</td>
+                            <td class="px-1 py-1"><img src="/storage/product/{{$i->image}}" class="w-32"/></td>
+                            <td class="px-1 py-1">@foreach($i->catArray as $j)<a href="/{{$j->url}}" target="_blank">{{$j->name}}, </a>@endforeach</td>
+                            <td class="px-1 py-1">@foreach($i->tagArray as $j)<a href="/{{$j->url}}" target="_blank">{{$j->name}}, </a>@endforeach</td>
+                            <td class="px-1 py-1">@if($i->status===1) Active @else Not Active @endif </td>
                             <td class="px-1 py-1">{{date('d-m-Y', strtotime($i->updated_at))}}</td>
                             <td class="px-1 py-1">
                                 <a class="bg-indigo-500 text-white px-4 py-1 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black" href="/admin/updateproduct/{{$i->id}}">Edit</a>
