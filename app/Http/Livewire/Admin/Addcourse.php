@@ -12,6 +12,7 @@ class Addcourse extends Component
     use WithFileUploads;
 
     public $name, $url, $image, $shortdesc, $longdesc, $price, $sale, $status, $title, $description;
+    public $videos = [];
 
     public function render(){
         return view('livewire.admin.addcourse');
@@ -44,6 +45,7 @@ class Addcourse extends Component
             'sale' =>  $this->sale,
             'rating' => json_encode( [0, 0] ),
             'status' => 1,
+            'videos' => json_encode( $this->videos )
         ]);
         
         Meta::create([
@@ -54,4 +56,7 @@ class Addcourse extends Component
         session()->flash('message', 'Course created Successfully.');
         return redirect(route('admincourses') );
     }
+
+    public function addVideo(){ array_push($this->videos, ['']); }
+    public function removeVideo($id){ array_splice($this->videos, $id, 1); }
 }
