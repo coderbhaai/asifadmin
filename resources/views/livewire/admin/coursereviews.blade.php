@@ -44,11 +44,12 @@
                             <td class="px-1 py-1 text-sm">{{$i->type}}</td>
                             <td class="px-1 py-1 text-sm">
                                 @if($i->type == 'Product')
-                                    <a href="/product/{{$i->url}}" target="_blank">  
+                                    <a href="/product/{{$i->productUrl}}" target="_blank">  
                                 @else 
-                                    <a href="/course/{{$i->url}}" target="_blank">
+                                    <a href="/course/{{$i->courseUrl}}" target="_blank">
                                 @endif
-                                 {{$i->type}} - {{$i->courseName}}</a></td>
+                                 {{$i->type}} - {{$i->courseName}}</a>
+                            </td>
                             <td class="px-1 py-1 text-sm">{{$i->name}} <br/> {{$i->email}}</td>
                             <td class="px-1 py-1">@if($i->status===1) Active @else Not Active @endif </td>
                             <td class="px-1 py-1 text-sm">{{date('d-m-Y', strtotime($i->updated_at))}}</td>

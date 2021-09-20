@@ -18,7 +18,8 @@ class Coursereviews extends Component
     public function render(){
         $data =   Coursereview::leftJoin('courses as b', function($join) { $join->on("b.id", "=", "coursereviews.courseid"); })
                     ->leftJoin('users as c', function($join) { $join->on("c.id", "=", "coursereviews.userid"); })
-                    ->select('coursereviews.id', 'coursereviews.type', 'coursereviews.courseid', 'coursereviews.userid', 'coursereviews.review', 'coursereviews.rating', 'coursereviews.status', 'coursereviews.updated_at', 'b.name as courseName', 'b.url', 'c.name', 'c.email')
+                    ->leftJoin('products as d', function($join) { $join->on("d.id", "=", "coursereviews.courseid"); })
+                    ->select('coursereviews.id', 'coursereviews.type', 'coursereviews.courseid', 'coursereviews.userid', 'coursereviews.review', 'coursereviews.rating', 'coursereviews.status', 'coursereviews.updated_at', 'b.name as courseName', 'b.url as courseUrl', 'c.name', 'c.email', 'd.name as productName', 'd.url as productUrl')
                     ->search($this->search)
                     ->orderBy($this->sortBy, $this->sortDirection)
                     ->paginate($this->perPage);
