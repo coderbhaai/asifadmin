@@ -6,6 +6,7 @@
                     <a href="/"><img class="logo w-16" src="{{ asset('images/logo.png') }}" alt="AmitKK Logo" width="120" height="45"/></a>
                 </div>
                 <div class="hidden space-x-2 md:space-x-8 sm:-my-px sm:flex sm:ml-10 w-full justify-end">
+                    <x-jet-nav-link href="{{ route('courses') }}" class="text-white hover:text-white hover:border-action focus:text-white">{{ __('Courses') }}</x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('shop') }}" class="text-white hover:text-white hover:border-action focus:text-white">{{ __('Shop') }}</x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('blogs') }}" class="text-white hover:text-white hover:border-action focus:text-white">{{ __('Blog') }}</x-jet-nav-link>
                     @if(!Auth::user())
@@ -71,6 +72,7 @@
     </div>
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pb-2 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('courses') }}" class="text-white hover:cursor-pointer">{{ __('Courses') }}</x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('shop') }}" class="text-white hover:cursor-pointer">{{ __('Shop') }}</x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('blogs') }}" class="text-white hover:cursor-pointer">{{ __('Blog') }}</x-jet-responsive-nav-link>
             @if(!Auth::user())

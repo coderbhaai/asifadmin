@@ -11,6 +11,8 @@ use App\Http\Livewire\Pages\Thankyou;
 use App\Http\Livewire\Ecom\Shop;
 use App\Http\Livewire\Ecom\Product;
 use App\Http\Livewire\Ecom\Cart;
+use App\Http\Livewire\Ecom\Courses;
+use App\Http\Livewire\Ecom\Singlecourse;
 
 use App\Http\Livewire\Blog\Blogpage;
 use App\Http\Livewire\Blog\Single;
@@ -43,6 +45,8 @@ Route::get("/thankyou", Thankyou::class)->name('thankyou');
 Route::get("/shop", Shop::class)->name('shop');
 Route::get("/product/{url}", Product::class)->name('product');
 Route::get("/cart", Cart::class)->name('cart');
+Route::get("/courses", Courses::class)->name('courses');
+Route::get("/course/{url}", Singlecourse::class)->name('singlecourse');
 
 Route::get('/blog', Blogpage::class)->name('blogs');
 Route::get('/tag/{url}', Blogpage::class);

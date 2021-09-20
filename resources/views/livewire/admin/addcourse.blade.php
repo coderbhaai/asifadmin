@@ -54,8 +54,8 @@
                             <div class="grid grid-cols-12 gap-6 mb-2">
                                 <div class="col-span-8">
                                     <label class="block text-sm font-medium text-gray-700">Video URL</label>
-                                    <input type="text" wire:model="videos.{{$i}}.0" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Video URL" required>
-                                    @error('videos.{{$i}}.0') <span class="error" ...>{{ $message }}</span> @enderror
+                                    <input type="text" wire:model="videos.{{$i}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Video URL" required>
+                                    @error('videos.{{$i}}') <span class="error" ...>{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Remove</label>

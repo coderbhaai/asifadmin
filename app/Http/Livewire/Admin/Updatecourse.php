@@ -12,6 +12,7 @@ class Updatecourse extends Component
     use WithFileUploads;
 
     public $name, $url, $image, $shortdesc, $longdesc, $price, $sale, $status, $title, $description, $oldimage, $data_id, $metaId;
+    public $videos = [];
 
     public function mount($id){
         $this->data_id = $id;
@@ -25,6 +26,7 @@ class Updatecourse extends Component
         $this->price =          $this->data->price;
         $this->sale =           $this->data->sale;
         $this->status =         $this->data->status;
+        $this->videos =         json_decode( $this->data->videos );
         if($meta){
             $this->metaId =         $meta->id;
             $this->title =          $meta->title;
@@ -47,6 +49,7 @@ class Updatecourse extends Component
             'title' => 'required',
             'description' => 'required',
             'status' => 'required',
+            'videos' => 'required',
         ]);
 
         $url = strtolower( str_replace(' ', '-', $this->url) );
@@ -72,6 +75,7 @@ class Updatecourse extends Component
             'sale' =>  $this->sale,
             'rating' => json_encode( [0, 0] ),
             'status' => $this->status,
+            'videos' => json_encode( $this->videos )
         ]);
         
         Meta::where('id', $this->metaId)->update([
@@ -79,7 +83,10 @@ class Updatecourse extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Course created Successfully.');
+        session()->flash('message', 'Course updated successfully.');
         return redirect(route('admincourses') );
     }
+
+    public function addVideo(){ array_push($this->videos, ''); }
+    public function removeVideo($id){ array_splice($this->videos, $id, 1); }
 }

@@ -12,7 +12,7 @@ class Shop extends Component
     public $perPageOptions = [10,25,50,100,1000];
 
     public function render(){
-        $data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'status', 'updated_at')
+        $data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'status', 'updated_at')
                         ->search($this->search)->paginate($this->perPage);
 
         $data->getCollection()->transform(function ($i) {
