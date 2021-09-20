@@ -27,8 +27,8 @@
         <div class="col-span-12 md:col-span-3">            
             <h2 class="text-center my-3 text-xl font-bold">Similar Courses</h1>
             @foreach($similar as $i)
-                <div class="flex items-center flex-wrap mb-4 p-4 transition duration-500 ease-in-out transform hover:-translate-y-1 shadow-lg">
-                    <a href="/course/{{$i->url}}">
+                <div class="bg-white mb-4 p-2 transition duration-500 ease-in-out transform hover:-translate-y-1 shadow-lg">
+                    <a href="/course/{{$i->url}}" class="flex items-center flex-wrap">
                         <img src="/storage/course/{{$i->image}}" alt="" class="w-20 mr-2">
                         <h3>{{$i->name}}</h3>
                     </a>
