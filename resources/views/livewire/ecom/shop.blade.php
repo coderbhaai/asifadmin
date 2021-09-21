@@ -1,6 +1,4 @@
 <div class="container">
-
-
     <style>
         .col-span-12:hover img{
             transform: scale(1.05);
@@ -10,10 +8,7 @@
     <h2 class="text-center my-3 text-xl md:text-4xl font-bold mt-10">SHOP</h2>
     <p class="text-center text-base">Shop all you want</p>
     <div class="flex grid grid-cols-12 gap-4 gap-x-3 mt-10">
-        @foreach($cart as $i)
-            <p>{{$i[0]}} - {{$i[1]}}</p>
-
-        @endforeach
+        <!-- @foreach($cart as $i) <p>{{$i[0]}} - {{$i[1]}}</p> @endforeach -->
         @foreach($data as $i)
             <div class="col-span-12 md:col-span-4 mb-3 group">
                 <div class="bg-white rounded-lg shadow-2xl overflow-hidden amitShadow">
