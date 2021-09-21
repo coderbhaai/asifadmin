@@ -85,6 +85,10 @@ nav {
   display: none;
 }
 
+.sweetalert {
+  bottom: 0;
+}
+
 @media (max-width: 767px) {
   .web {
     display: none !important;

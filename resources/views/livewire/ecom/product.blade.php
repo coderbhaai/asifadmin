@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-span-12 md:col-span-6">
                     {!! $shortdesc !!}
-                    <p class="my-3 text-xl font-medium">Price - Rs {{$sale}}</p>
+                    <p class="my-3 text-xl font-medium">Price - &#8377;{{$sale}}</p>
                 </div>
                 <div class="col-span-12">
                     {!! $longdesc !!}
