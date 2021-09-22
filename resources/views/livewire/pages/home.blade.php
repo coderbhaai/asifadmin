@@ -13,7 +13,18 @@
         .testis{
             background: url(images/static/testimonial-bg.jpg) no-repeat center center;
         }
+        .text{
+            bottom: 10%;
+            left: 10%;
+        }
     </style>
+    <section class="banner relative">
+        <img src="/images/static/banner.jpg" alt="">
+        <div class="text absolute">
+            <h1 class="text-white text-xl md:text-3xl font-bold">Courses & Fasion</h1>
+            <p class="text-white">All you ever wanted</p>
+        </div>
+    </section>
     <section class="services">
         <div class="container py-10">
             <h2 class="text-center text-xl md:text-3xl font-bold mb-2">OUR SERVICES</h2>
