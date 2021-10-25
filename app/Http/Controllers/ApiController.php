@@ -9,6 +9,7 @@ use App\Models\Master;
 use App\Models\Course;
 use App\Models\Product;
 use App\Models\Coursereview;
+use App\Models\Marketing;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -25,6 +26,27 @@ class ApiController extends Controller
         ]);
     }
 
+    public function staticData(){
+        $banner = [
+            '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg',
+        ];
+        $ads = [
+            'ad-1.jpg', 'ad-2.jpg', 'ad-3.jpg', 'ad-4.jpg', 'ad-5.jpg',
+        ];
+
+        return response()->json([
+            'banner' => $banner,
+            'ads' => $ads,
+        ]);
+    }
+
+    public function marketing(){
+        $data = Marketing::select('id', 'heading', 'video', 'description')->where('status', 1)->get();
+        return response()->json([
+            'data' => $data
+        ]);
+    }
+    
     public function featuredCourses(){
         $data = Course::select('id', 'name', 'image')->where('status', 1)->Limit(4)->get();
         return response()->json([

@@ -3,14 +3,17 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
+use File;
+use Livewire\WithFileUploads;
 use App\Models\Master;
 use App\Models\Meta;
 use Livewire\WithPagination;
 
 class Adminmaster extends Component
 {
+    use WithFileUploads;
     use WithPagination;
-    public $type, $name, $tab1, $tab2, $url, $data_id;
+    public $type, $name, $tab1, $tab2, $url, $image, $oldimage, $data_id;
     public $isOpen = 0;
     public $sortBy = 'url';
     public $sortDirection = 'asc';
@@ -66,6 +69,20 @@ class Adminmaster extends Component
         ]);
         $url = strtolower( str_replace(' ', '-', $this->url) );
         
+        if($this->type == "prodCat" || $this->type == "prodTag"){
+            if($this->image){
+                $fileName1 = time().'-'.$this->image->getClientOriginalName(); 
+                $this->tab1 = $fileName1;
+                $this->image->storeAs('public/productCategory', $fileName1);
+                if($this->oldimage){
+                    $delete = public_path("storage/productCategory/$this->oldimage");
+                    if (isset($delete)) { file::delete($delete); }
+                }
+            }else{
+                $this->tab1 = $this->oldimage;
+            }
+        }
+        
         Master::updateOrCreate(['id' => $this->data_id], [
             'type' => $this->type,
             'name' => $this->name,
@@ -85,6 +102,9 @@ class Adminmaster extends Component
         $this->url = $i['url'];
         $this->data_id = $i['id'];
         $this->isOpen = true;
+        if( $i['type'] == "prodCat" || $i['type'] == "prodTag" ){
+            $this->oldimage = $i['tab1'];
+        }
     }
 
     public function updatingSearch(){

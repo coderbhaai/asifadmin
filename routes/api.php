@@ -7,8 +7,11 @@ use App\Http\Controllers\ApiController;
 Route::get('/test', 'App\Http\Controllers\ApiController@test');
 Route::post('/register', 'App\Http\Controllers\AuthController@register');
 Route::post('/login', 'App\Http\Controllers\AuthController@login');
+Route::post('/forgotPassword', 'App\Http\Controllers\AuthController@forgotPassword');
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/marketing', 'App\Http\Controllers\ApiController@marketing');
+    Route::get('/staticData', 'App\Http\Controllers\ApiController@staticData');
     Route::get('/products', 'App\Http\Controllers\ApiController@products');
     Route::get('/featuredCourses', 'App\Http\Controllers\ApiController@featuredCourses');
     Route::get('/courseList', 'App\Http\Controllers\ApiController@courseList');

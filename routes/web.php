@@ -33,6 +33,7 @@ use App\Http\Livewire\Admin\Addcourse;
 use App\Http\Livewire\Admin\Updatecourse;
 use App\Http\Livewire\Admin\Admincourses;
 use App\Http\Livewire\Admin\Coursereviews;
+use App\Http\Livewire\Admin\Adminmarketing;
 
 
 
@@ -71,6 +72,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/addcourse', Addcourse::class)->name('addcourse');
         Route::get('/admin/updatecourse/{id}', Updatecourse::class)->name('updatecourse');
         Route::get('/admin/coursereviews', Coursereviews::class)->name('coursereviews');
+        Route::get('/admin/marketing', Adminmarketing::class)->name('adminmarketing');
     });
 });
 

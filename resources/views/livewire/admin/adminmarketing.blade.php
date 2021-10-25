@@ -2,9 +2,9 @@
     <div class="flex grid grid-cols-12 gap-4 gap-x-3">
         @livewire('parts.adminsidebar')
         <div class="col-span-12 md:col-span-10 px-3 md:pt-10">
-            <h1 class="text-center text-3xl font-bold py-2 mb-6">Admin Masters</h1>
+            <h1 class="text-center text-3xl font-bold py-2 mb-6">Admin Marketing </h1>
             <div class="md:flex justify-between mb-2 md:mb-0">
-                <button wire:click="openModal()" class="w-full md:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Add Master</button>
+                <button wire:click="openModal()" class="w-full md:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Add Video</button>
                 <div class="row">
                     <input type="text" wire:model.debounce.300ms="search" placeholder="search" class="h-12 border border-primary border-2 border rounded w-full md:w-auto mb-2 md:mb-0"/>
                     <div class="relative inline-flex self-center w-full md:w-auto">
@@ -29,11 +29,9 @@
             <table class="min-w-full table-auto mb-5">
                 <thead class="justify-between">
                 <tr class="bg-primary">
-                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('id')"><span class="text-white">#</span> @include('partials.sorticon', ['field'=>'id'])</th>
-                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('type')"><span class="text-white">Type</span> @include('partials.sorticon', ['field'=>'type'])</th>
-                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('name')"><span class="text-white">Name || URL</span> @include('partials.sorticon', ['field'=>'name'])</th>
-                    <th class="py-2 relative hover:cursor-pointer"><span class="text-white">Tab1</span></th>
-                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('tab2')"><span class="text-white">Tab2</span> @include('partials.sorticon', ['field'=>'tab2']) </th>
+                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('id')"><span class="text-white">Sl No.</span> @include('partials.sorticon', ['field'=>'id'])</th>
+                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('heading')"><span class="text-white">Heading</span> @include('partials.sorticon', ['field'=>'heading'])</th>
+                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('video')"><span class="text-white">Video</span> @include('partials.sorticon', ['field'=>'video'])</th>
                     <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('updated_at')"><span class="text-white">Date</span> @include('partials.sorticon', ['field'=>'updated_at'])</th>
                     <th class="py-2 hover:cursor-pointer"><span class="text-white">Action</span></th>
                 </tr>
@@ -41,22 +39,10 @@
                 <tbody class="">
                     @foreach($data as $i)
                         <tr class="">
-                            <td class="px-1 py-1 text-sm text-center">{{ $loop->index +1}}</td>
-                            <td class="px-1 py-1 text-sm">
-                                {{ $i->type == 'prodType' ? 'Product Type'
-
-                                : $i->type }}
-                            </td>
-                            <td class="px-1 py-1 text-sm">{{$i->name}} <br/>{{$i->url}}</td>
-                            <td class="px-1 py-1 text-sm">
-                                @if($i->type == 'prodCat' ||  $i->type == 'prodTag')
-                                    <img src="/storage/productCategory/{{$i->tab1}}" alt="test" class="w-32">
-                                @else
-                                    {{$i->tab1}}
-                                @endif
-                            </td>
-                            <td class="px-1 py-1 text-sm">{{$i->tab2}}</td>
-                            <td class="px-1 py-1 text-sm">{{date('d-m-Y', strtotime($i->updated_at))}}</td>
+                            <td class="px-1 py-1 text-center">{{ $loop->index +1}}</td>
+                            <td class="px-1 py-1">{{$i->heading}}</td>
+                            <td class="px-1 py-1">{{$i->video}}</td>
+                            <td class="px-1 py-1">{{date('d-m-Y', strtotime($i->updated_at))}}</td>
                             <td class="px-1 py-1">
                                 <button class="bg-indigo-500 text-white px-4 py-1 border rounded-md hover:bg-white hover:border-indigo-500 hover:text-black" wire:click="edit({{$i}})">Edit</button>
                             </td>
@@ -72,7 +58,7 @@
                     <div class="relative bg-white shadow-lg rounded-md text-gray-900 z-20 p-4"
                     x-transition:enter="transition transform duration-300" x-transition:enter-start="scale-0" x-transition:enter-end="scale-100" x-transition:leave="transition transform duration-300" x-transition:leave-start="scale-100" x-transition:leave-end="scale-0">
                         <header class="flex items-center justify-between p-2">
-                            <h2 class="font-semibold">Add Blog Meta Here</h2>
+                            <h2 class="font-semibold">Add Meta Here</h2>
                             <button class="focus:outline-none p-2" wire:click="closeModal()"><svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path></svg></button>
                         </header>
                         <main class="p-2">
@@ -80,33 +66,28 @@
                                 <div class="bg-white">
                                     <div class="grid grid-cols-12 gap-6">
                                         <div class="col-span-4">
-                                            <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                                            <select wire:model="type" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                <option value="">Select Type</option>
-                                                <option value="prodType">Product Type</option>
-                                                <option value="prodCat">Product Category</option>
-                                                <option value="prodTag">Product Tag</option>
-                                            </select>
-                                            @error('type') <span class="error" ...>{{ $message }}</span> @enderror
+                                            <label for="heading" class="block text-sm font-medium text-gray-700">heading</label>
+                                            <input type="text" wire:model="heading" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add heading">
+                                            @error('heading') <span class="error" ...>{{ $message }}</span> @enderror
                                         </div>
                                         <div class="col-span-4">
-                                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                            <input type="text" wire:model="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Name"/>
-                                            @error('name') <span class="error" ...>{{ $message }}</span> @enderror
+                                            <label for="video" class="block text-sm font-medium text-gray-700">video</label>
+                                            <input type="text" wire:model="video" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add video">
+                                            @error('video') <span class="error" ...>{{ $message }}</span> @enderror
                                         </div>
-                                        @if( $type=='prodType' || $type=='prodCat' || $type=='prodTag' )
-                                            <div class="col-span-4">
-                                                <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
-                                                <input type="text" wire:model="url" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add URL"/>
-                                                @error('url') <span class="error" ...>{{ $message }}</span> @enderror
-                                            </div>
-                                            <div class="col-span-6">
-                                                <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-                                                <input type="file" wire:model="image">
-                                                @error('image') <span class="error text-action font-bold">{{ $message }}</span> @enderror
-                                                @if($oldimage) <img src="/storage/blog/{{$oldimage}}" alt="" class="w-20 mt-2"/> @endif
-                                            </div>
-                                        @endif
+                                        <div wire:ignore class="col-span-4">
+                                            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                                            <select class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" wire:model="status" required>
+                                                <option value="">Select Status</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Not Active</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-12">
+                                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                                            <textarea type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description"></textarea>
+                                            @error('description') <span class="error" ...>{{ $message }}</span> @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="bg-gray-50 text-right mt-5">
