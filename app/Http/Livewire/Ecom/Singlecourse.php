@@ -50,19 +50,14 @@ class Singlecourse extends Component
                 $this->sendCartNumber( $coursebasket );
             }
         }else{
-            $courseInCart = [];
-            array_push( $courseInCart, $id );
-            Cookie::queue( 'coursebasket', json_encode( $courseInCart ) );  
-            $coursebasket = Cookie::get('coursebasket');
-            $this->sendCartNumber( $coursebasket );
+            Cookie::queue( 'coursebasket', json_encode( [$id] ) ); 
+            $this->sendCartNumber( [$id] );
         }
         
     }
 
     public function sendCartNumber($coursebasket){
-        $count = 0;
-        
-        if( count( $coursebasket ) ){ foreach ($coursebasket as $i) { $count += $i[1]; } }
+        $count = count( $coursebasket );
 
         if(Cookie::get('productbasket')){
             $productbasket = json_decode( Cookie::get('productbasket') );
