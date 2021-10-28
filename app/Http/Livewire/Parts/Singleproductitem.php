@@ -6,8 +6,9 @@ use Livewire\Component;
 
 class Singleproductitem extends Component
 {
-    public function render()
-    {
+    public $item;
+    
+    public function render(){
         return view('livewire.parts.singleproductitem');
     }
 }

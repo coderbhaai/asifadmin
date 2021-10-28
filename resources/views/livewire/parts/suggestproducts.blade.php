@@ -5,11 +5,7 @@
             <div class="swiper-wrapper">
                 @foreach($data as $i)
                     <div class="swiper-slide block md:flex items-center justify-around pt-10">
-                        <a href="{{$i->url}}">
-                            <img src="/storage/product/{{$i->image}}" alt="Website Development in Delhi" class="md:pr-4 max-w-400" width="380" height="380"/>
-                            <h2 class="text-xl text-center font-bold mt-5">{{$i->name}}</h2>
-                            <p class="text-center">{{$i->sale}}</p>
-                        </a>
+                        @livewire('parts.singleproductitem', ["item" => $i])
                     </div>
                 @endforeach
             </div>
