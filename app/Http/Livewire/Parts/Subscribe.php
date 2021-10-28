@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Parts;
 use Livewire\Component;
 use Mail;
 use App\Models\Subscribe as SubscriptionModel;
-use App\Mail\Subscription;
+use App\Mail\Subscribemail;
 
 class Subscribe extends Component
 {
@@ -24,8 +24,8 @@ class Subscribe extends Component
             'status' =>  1,
         ]);
         $user_email = $this->email;
-        // Mail::to( $user_email)->cc('amit@amitkk.com')->send(new Subscription);
-        // $this->email = '';
+        Mail::to( $user_email)->cc('amit@amitkk.com')->send(new Subscribemail);
+        $this->email = '';
         session()->flash('message', 'You subscribed Successfully.');
         return redirect(route('thankyou') );
     }

@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Form;
 
 use Livewire\Component;
+use Mail;
 use App\Models\Contact;
+use App\Mail\Contactmail;
 
 class Contactform extends Component
 {
@@ -35,16 +37,15 @@ class Contactform extends Component
             'message' =>  $this->message,
         ]);
 
-        // $xx = [
-        //     'name' =>  $this->name,
-        //     'email' =>  $this->email,
-        //     'phone' =>  $this->phone,
-        //     'city' =>  $this->city,
-        //     'reason' =>  $this->reason,
-        // ];
+        $xx = [
+            'name' =>  $this->name,
+            'email' =>  $this->email,
+            'phone' =>  $this->phone,
+            'message' =>  $this->message,
+        ];
 
-        // $user_email = $this->email;
-        // Mail::to( $user_email)->cc('amit@amitkk.com')->send(new JoinMail($xx));
+        $user_email = $this->email;
+        Mail::to( $user_email)->cc('amit@amitkk.com')->send(new ContactMail($xx));
 
         session()->flash('message', 'Form Submitted Successfully.');
         return redirect(route('thankyou') );

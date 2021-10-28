@@ -87,6 +87,9 @@ class RazorpayController extends Controller
                     $dB->remarks            =   "Ordered";
                     $dB-> save();
                 }
+
+                dd($courses, $products);
+
                 Cookie::queue(Cookie::forget('cart'));
 
             } catch (Exception $e) {
