@@ -9,7 +9,13 @@
     <p class="text-center text-base">Find thew right course for you</p>
     <div class="flex grid grid-cols-12 gap-4 gap-x-3 mt-10">
         @foreach($data as $i)
-            <div class="col-span-12 md:col-span-4 mb-3 group">
+            @livewire('parts.singlecourseitem', ["item" => $i])
+        @endforeach
+    </div>
+</div>
+
+
+<!-- <div class="col-span-12 md:col-span-4 mb-3 group">
                 <div class="bg-white rounded-lg shadow-2xl overflow-hidden amitShadow">
                     <a href="/course/{{$i->url}}">
                         <img src="/storage/course/{{$i->image}}" alt="{{$i->name}}" class="rounded-t-lg" loading="lazy" width="300" height="160"/>
@@ -22,7 +28,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
-</div>
+            </div> -->

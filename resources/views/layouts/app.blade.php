@@ -10,7 +10,7 @@
     </head>
     <body class="font-sans antialiased relative">
         <x-jet-banner />
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             @livewire('navigation-menu')
             @if (isset($header))
                 <header class="bg-white shadow">

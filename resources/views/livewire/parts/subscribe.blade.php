@@ -1,4 +1,4 @@
-<div class="py-12" style="background: #faf5ec my-10">
+<div class="py-12" style="background: #faf5ec" class="my-10">
     <div class="container">
         <h2 class="text-center text-xl md:text-3xl font-bold mb-2">Subscribe</h2>
         <p class="text-center text-base">Become a AB member and get 10% off on your next purchase!</p>

@@ -68,7 +68,7 @@
                     <div class="tint absolute left-0 right-0 h-full top-0"></div>
                     <div class="text text-center absolute left-0 right-0 z-50">
                         <h3 class="text-white mb-3 text-xl">Online Learning</h3>
-                        <a href="/courses" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Start A Class Today</a>
+                        <a href="{{ route('courses') }}" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Start A Class Today</a>
                     </div>
                 </div>
                 <div class="rounded col-span-12 md:col-span-6 relative group">
@@ -76,12 +76,9 @@
                     <div class="tint absolute left-0 right-0 h-full top-0"></div>
                     <div class="text text-center absolute left-0 right-0 z-50">
                         <h3 class="text-white mb-3 text-xl">e-Fashion</h3>
-                        <a href="/shop" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Explore the Self</a>
+                        <a href="{{ route('shop') }}" class="text-white text-center py-3 px-6 rounded-lg border-2 border-white inline-block overflow-hidden group-hover:bg-white group-hover:text-primary transition duration-300 ease-in-out">Explore the Self</a>
                     </div>
                 </div>
-            </div>
-            <div class="text-center mt-12 group">
-                <a href="" class="relative overflow-hidden uppercase z-50 inline-block text-center text-white py-3 px-6 rounded-full bg-green">Explore</a>
             </div>
         </div>
     </section>
@@ -123,7 +120,7 @@
                     <div class="text">
                         <h2 class="text-4xl font-bold">The Indian Casual</h2>
                         <p class="my-5">Starts from <span class="bg-green text-white text-center p-3 rounded">Rs. 500</span></p>
-                        <a href="" class="underline text-3xl font-bold">Explore Collection</a>
+                        <a href="{{ route('courses') }}" class="underline text-3xl font-bold">Explore Collection</a>
                     </div>
                 </div>
                 <div class="swiper-slide block md:flex items-center justify-around pt-10" style="background: #E5F4F7">
@@ -131,7 +128,7 @@
                     <div class="text">
                         <h2 class="text-4xl font-bold">The Indian Casual</h2>
                         <p class="my-5">Starts from <span class="bg-green text-white text-center p-3 rounded">Rs. 500</span></p>
-                        <a href="" class="underline text-3xl font-bold">Explore Collection</a>
+                        <a href="{{ route('courses') }}" class="underline text-3xl font-bold">Explore Collection</a>
                     </div>
                 </div>
                 <div class="swiper-slide block md:flex items-center justify-around pt-10" style="background: #E5F4F7">
@@ -139,7 +136,7 @@
                     <div class="text">
                         <h2 class="text-4xl font-bold">The Indian Casual</h2>
                         <p class="my-5">Starts from <span class="bg-green text-white text-center p-3 rounded">Rs. 500</span></p>
-                        <a href="" class="underline text-3xl font-bold">Explore Collection</a>
+                        <a href="{{ route('courses') }}" class="underline text-3xl font-bold">Explore Collection</a>
                     </div>
                 </div>
             </div>
