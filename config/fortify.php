@@ -61,7 +61,15 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    // 'home' => RouteServiceProvider::HOME,
+
+    'home' => function(){
+        if (json_decode( Cookie::get('tocart') ) == true) {
+           return route('cart');
+        }else{
+           return RouteServiceProvider::HOME;
+        }
+    },
 
     /*
     |--------------------------------------------------------------------------

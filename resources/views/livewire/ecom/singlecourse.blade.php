@@ -5,8 +5,8 @@
             <div class="flex grid grid-cols-12 gap-4 gap-x-3 py-12">
                 <div class="col-span-12 md:col-span-3">
                     <img src="/storage/course/{{$image}}" alt="" class="mb-2">
-                    <div class="bg-gray-50  mt-5">
-                        <button type="button" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-action w-full">Add To Cart</button>
+                    <div class="bg-gray-50 mt-5">
+                        <button type="button" wire:click="addToCart({{ $data['id'] }})" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-action w-full">Add To Cart</button>
                     </div>
                 </div>
                 <div class="col-span-12 md:col-span-6">

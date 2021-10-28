@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Ecom;
 
 use Livewire\Component;
+use Cookie;
+
 use App\Models\Course;
 use App\Models\Coursereview;
 
@@ -32,7 +34,42 @@ class Singlecourse extends Component
             return redirect('/404');
         }
     }
+
     public function render(){
         return view('livewire.ecom.singlecourse');
+    }
+
+    public function addToCart($id){
+        if(Cookie::get('coursebasket')){
+            $courseInCart = json_decode( Cookie::get('coursebasket') );
+            if( !in_array($id, $courseInCart) ){
+                array_push( $courseInCart, $id );
+                Cookie::queue( 'coursebasket', json_encode( $courseInCart ) );
+                $coursebasket = Cookie::get('coursebasket');
+                
+                $this->sendCartNumber( $coursebasket );
+            }
+        }else{
+            $courseInCart = [];
+            array_push( $courseInCart, $id );
+            Cookie::queue( 'coursebasket', json_encode( $courseInCart ) );  
+            $coursebasket = Cookie::get('coursebasket');
+            $this->sendCartNumber( $coursebasket );
+        }
+        
+    }
+
+    public function sendCartNumber($coursebasket){
+        $count = 0;
+        
+        if( count( $coursebasket ) ){ foreach ($coursebasket as $i) { $count += $i[1]; } }
+
+        if(Cookie::get('productbasket')){
+            $productbasket = json_decode( Cookie::get('productbasket') );
+            foreach ($productbasket as $i) { $count += $i; }
+        }
+
+        $this->emit('itemAdded', $count);
+        session()->flash('message', 'Cart Updated Successfully.');
     }
 }

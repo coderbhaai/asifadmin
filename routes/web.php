@@ -11,6 +11,7 @@ use App\Http\Livewire\Pages\Thankyou;
 use App\Http\Livewire\Ecom\Shop;
 use App\Http\Livewire\Ecom\Product;
 use App\Http\Livewire\Ecom\Cart;
+use App\Http\Livewire\Ecom\Checkout;
 use App\Http\Livewire\Ecom\Courses;
 use App\Http\Livewire\Ecom\Singlecourse;
 
@@ -35,7 +36,7 @@ use App\Http\Livewire\Admin\Admincourses;
 use App\Http\Livewire\Admin\Coursereviews;
 use App\Http\Livewire\Admin\Adminmarketing;
 
-
+use App\Http\Controllers\RazorpayController;
 
 Route::get('/', Home::class)->name('home');
 Route::get("/contact", Contact::class)->name('contact');
@@ -46,6 +47,7 @@ Route::get("/thankyou", Thankyou::class)->name('thankyou');
 Route::get("/shop", Shop::class)->name('shop');
 Route::get("/product/{url}", Product::class)->name('product');
 Route::get("/cart", Cart::class)->name('cart');
+Route::get("/checkout", Checkout::class)->name('checkout');
 Route::get("/courses", Courses::class)->name('courses');
 Route::get("/course/{url}", Singlecourse::class)->name('singlecourse');
 
@@ -75,5 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/marketing', Adminmarketing::class)->name('adminmarketing');
     });
 });
+
+Route::post('payment', [RazorpayController::class, 'payment'])->name('payment');
 
 Route::get('/{url}', Single::class)->name('single');

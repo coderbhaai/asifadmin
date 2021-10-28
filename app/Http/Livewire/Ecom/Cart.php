@@ -3,33 +3,46 @@
 namespace App\Http\Livewire\Ecom;
 
 use Livewire\Component;
-use App\Models\Product;
 use Cookie;
+use App\Models\Product;
+use App\Models\Course;
 
 class Cart extends Component
 {
     public $total = 0;
-    public $cart = [];
+    public $coursebasket = [];
+    public $productbasket = [];
     public $products = [];
+    public $courses = [];
+    // public $name, $email, $phone, $country, $state, $city, $address, $pin, $shipping;
+    public $name = "Amit";
+    public $email = "amit.khare588@gmail.com";
+    public $phone = "8424003840";
+    public $country = "India";
+    public $state = "Haryana";
+    public $city = "Gurgaon";
+    public $address = "1172, Sec - 45";
+    public $pin = "122002";
 
-    public function mount(){
-        if(Cookie::get('cart')){
-            $this->cart = json_decode( Cookie::get('cart') );
-            $this->getProductsFromCart($this->cart);
-        }else{
-            $this->cart = [];
-            $this->products = [];
+
+    public function mount(){        
+        if( Cookie::get('coursebasket') || Cookie::get('productbasket') ){
+            if(Cookie::get('coursebasket')){ $this->coursebasket = json_decode( Cookie::get('coursebasket') ); }
+            if(Cookie::get('productbasket')){ $this->productbasket = json_decode( Cookie::get('productbasket') ); }
+
+            $this->getProductsFromCart($this->coursebasket, $this->productbasket);
         }
-
-
+        // dd($this->courses,  $this->products);
     }
 
     public function render(){
         return view('livewire.ecom.cart', 
             [
-                'products'          =>  $this->products,
-                'cart'              =>  $this->cart,
                 'total'             =>  $this->total,
+                'coursebasket'      =>  $this->coursebasket,
+                'productbasket'     =>  $this->productbasket,
+                'products'          =>  $this->products,
+                'courses'           =>  $this->courses,
             ]
         );
     }
@@ -87,32 +100,46 @@ class Cart extends Component
         }
     }
 
-    private function getProductsFromCart($cart){
-        $ids = []; foreach ($cart as $i) { array_push($ids, $i[0]); }
-        $products = Product::select('id', 'name', 'url', 'price', 'sale', 'images' )->whereIn('id', $ids)->get()->map(function($i) {
+    private function getProductsFromCart( $coursebasket, $productbasket ){
+        // dd($coursebasket, $productbasket);
+        $productIds = []; foreach ($productbasket as $i) { array_push($productIds, $i[0]); }
+        $products = Product::select('id', 'name', 'url', 'price', 'sale', 'images' )->whereIn('id', $productIds)->get()->map(function($i) {
             $i['image']  =   json_decode( $i->images)[0];
-            foreach ($this->cart as $j) {
-                if($i->id === $j[0]){ $i['amount'] = $j[1]; }
-            }            
+            foreach ($this->productbasket as $j) { if($i->id === $j[0]){ $i['amount'] = $j[1]; } }            
             return $i;
         });
+        
+        $courses = Course::select('id', 'name', 'url', 'price', 'sale', 'image' )->whereIn('id', $coursebasket)->get();
 
         $total = 0;
         foreach ($products as $i) { $total += $i['amount'] * $i['sale'];  }
+        foreach ($courses as $i) { $total += $i['sale']; }
+
         $this->total = $total;
         $this->products = $products;
+        $this->courses = $courses;
     }
 
-    // private function getProducts(){
-    //     $this->cart = json_decode( Cookie::get('cart') );
-    //     $ids = []; foreach ($this->cart as $i) { array_push($ids, $i[0]); }
-    //     $products = Product::select('id', 'name', 'url', 'price', 'sale', 'images' )->whereIn('id', $ids)->get()->map(function($i) {
-    //         $i['image']  =   json_decode( $i->images)[0];
-    //         foreach ($this->cart as $j) {
-    //             if($i->id === $j[0]){ $i['amount'] = $j[1]; }
-    //         }            
-    //         return $i;
-    //     });
-    //     return ($products);
-    // }
+    public function submit(){
+        $buyer = [
+            "name" => $this->name,
+            "email" => $this->email,
+            "phone" => $this->phone,
+            "country" => $this->country,
+            "state" => $this->state,
+            "city" => $this->city,
+            "address" => $this->address,
+            "pin" => $this->pin,
+        ];
+        Cookie::queue( 'buyer', json_encode( $buyer ) );
+
+        return redirect(route('checkout') ); 
+    }
+
+    public function notLoggedIn(){
+        Cookie::queue( 'tocart', json_encode( true ) );
+        return redirect('/login');
+        
+        // Changes made in config/fortify.php
+    }
 }
