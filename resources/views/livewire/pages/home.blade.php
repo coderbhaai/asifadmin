@@ -57,7 +57,7 @@
             </div>
         </div>
     </section>
-    @livewire('parts.suggestcourses')
+    <div class="container pt-10">@livewire('parts.suggestcourses')</div>
     <section class="expertise">
         <div class="container py-10">
             <h2 class="text-center text-xl md:text-3xl font-bold mb-2">Our Expertise</h2>

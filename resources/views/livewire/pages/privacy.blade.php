@@ -1,3 +1,18 @@
-<div>
-    {{-- Close your eyes. Count to one. That is how long forever feels. --}}
+<div class="container py-12">
+    <h2 class="text-xl md:text-3xl font-semibold text-action text-center mb-5">Privacy Policy</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet magnam animi autem illo rem, harum magni consequuntur tempore adipisci, excepturi iure quod quam hic earum explicabo doloremque eum sapiente rerum.</p>
 </div>

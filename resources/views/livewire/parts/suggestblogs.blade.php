@@ -19,7 +19,7 @@
             @livewire('parts.singleblogitem', ["item" => $i])
         @endforeach
     </div>
-    <div class="amitBtnGroup text-center my-5">
-        <a href="/blog" class="relative overflow-hidden uppercase z-50 inline-block text-center shadow-amit amitBtn py-3 px-12 font-bold rounded-full">Read All Blogs</a>
+    <div class="text-center my-5">
+        <a href="/blog" class="inline-block text-center text-white py-3 px-6 rounded-full bg-green">Read All Blogs</a>
     </div>
 </div>
