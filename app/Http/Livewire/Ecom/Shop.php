@@ -15,7 +15,6 @@ class Shop extends Component
 
     public function mount(){
         if(request()->routeIs('shop')){
-            // dd(1);
             $this->title  = 'Shop';
             $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'status', 'updated_at')
                             ->get();

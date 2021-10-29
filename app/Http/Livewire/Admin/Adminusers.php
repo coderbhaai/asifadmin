@@ -29,7 +29,6 @@ class Adminusers extends Component
     }
 
     public function openModal($i){
-        // dd($i);
         $this->role = $i['role'];
         $this->status = $i['status'];
         $this->name = $i['name'];

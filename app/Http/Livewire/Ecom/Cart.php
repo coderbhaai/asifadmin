@@ -32,7 +32,6 @@ class Cart extends Component
 
             $this->getProductsFromCart($this->coursebasket, $this->productbasket);
         }
-        // dd($this->courses,  $this->products);
     }
 
     public function render(){
@@ -101,7 +100,6 @@ class Cart extends Component
     }
 
     private function getProductsFromCart( $coursebasket, $productbasket ){
-        // dd($coursebasket, $productbasket);
         $productIds = []; foreach ($productbasket as $i) { array_push($productIds, $i[0]); }
         $products = Product::select('id', 'name', 'url', 'price', 'sale', 'images' )->whereIn('id', $productIds)->get()->map(function($i) {
             $i['image']  =   json_decode( $i->images)[0];
