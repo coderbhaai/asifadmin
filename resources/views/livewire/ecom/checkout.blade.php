@@ -1,10 +1,4 @@
 <div class="container">
-    <style>
-        .col-span-12:hover img{
-            transform: scale(1.05);
-            transition: transform 0.6s ease-out,-webkit-transform 0.6s ease-out;
-        }
-    </style>
     <h2 class="text-center my-3 text-xl md:text-4xl font-bold mt-10">Cart</h2>
     <p class="text-center text-base">Here's your cart</p>
     <div class="my-5">
@@ -95,9 +89,9 @@
                     "key": "{{ env('RAZORPAY_KEY') }}", // Enter the Key ID generated from the Dashboard
                     "amount": "{{ $total*100 }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                     "currency": "INR",
-                    "name": "Hidraj Tea",
+                    "name": "Amina Boutique",
                     "description": "Test Transaction",
-                    "image": "https://hindrajtea.com/wp-content/themes/kaffa/assets/images/logo.png",
+                    "image": "https://aminaboutique.in/images/logo.png",
                     "order_id": "{{ $orderId }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                     "callback_url": "{{ env('RAZORPAY_ROUTE') }}",
                     "state": "{{ csrf_token() }}",

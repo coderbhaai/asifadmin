@@ -18,11 +18,11 @@ class Meta extends Model
     }
 
     public static function metatag(){
-        $url = str_replace("http://amitkklive.test","", url()->current());
+        $url = str_replace("http://asifweb.test","", url()->current());
         if(!$url){ $url = '/'; }
         $meta = Meta::select('*')->where('url', '=' , $url)->first();
         if($meta === NULL){
-            $meta = Meta::select('*')->where('url', '=' , 'default')->first();
+            $meta = Meta::select('*')->where('url', '=' , '/')->first();
         }
         $blogMetaImage = Blogmeta::select('name')->where('url', $url)->where('type', 'page')->first();
         $blogImage = Blog::select('cover_img')->where('url', substr($url, 1) )->first();

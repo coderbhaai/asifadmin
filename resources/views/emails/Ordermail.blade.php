@@ -35,12 +35,12 @@
     <p>Your Order is: </p>
     @if(count($x))<h2>Courses</h2>@endif
     @foreach($x as $i)
-        <p><a href="/product/{{$i['name']}}">{{ $i['name'] }}</a> : &#8377; {{ $i['sale'] }}</p>
+        <p><a href="https://aminaboutique.in/course/{{$i['url']}}">{{ $i['name'] }}</a> : &#8377; {{ $i['sale'] }}</p>
     @endforeach
 
     @if(count($y))<h2>Products</h2>@endif
     @foreach($y as $i)
-        <p><a href="/product/{{$i['name']}}">{{ $i['name'] }}</a> : {{ $i['amount'] }} @ {{ $i['sale'] }} = &#8377; {{ $i['amount'] * $i['sale'] }}</p>
+        <p><a href="https://aminaboutique.in/product/{{$i['url']}}">{{ $i['name'] }}</a> : {{ $i['amount'] }} @ {{ $i['sale'] }} = &#8377; {{ $i['amount'] * $i['sale'] }}</p>
     @endforeach
 
     <p>Thank you for placing the order with us</p>
