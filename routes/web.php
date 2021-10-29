@@ -36,6 +36,9 @@ use App\Http\Livewire\Admin\Updatecourse;
 use App\Http\Livewire\Admin\Admincourses;
 use App\Http\Livewire\Admin\Coursereviews;
 use App\Http\Livewire\Admin\Adminmarketing;
+use App\Http\Livewire\Admin\Adminorders;
+
+use App\Http\Livewire\User\Userorders;
 
 use App\Http\Controllers\RazorpayController;
 
@@ -77,6 +80,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/updatecourse/{id}', Updatecourse::class)->name('updatecourse');
         Route::get('/admin/coursereviews', Coursereviews::class)->name('coursereviews');
         Route::get('/admin/marketing', Adminmarketing::class)->name('adminmarketing');
+        Route::get('/admin/orders', Adminorders::class)->name('adminorders');
+    });
+    Route::middleware(['user'])->group(function () {
+        Route::get('/user/orders', Userorders::class)->name('userorders');
     });
 });
 

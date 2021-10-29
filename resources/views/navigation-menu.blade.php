@@ -51,7 +51,12 @@
                         <x-slot name="content">
                             @if(Auth::user())
                                 <div class="block px-4 py-2 text-xs text-gray-400">{{ __('Manage Account') }}</div>
-                                <x-jet-dropdown-link href="/admin/meta">{{ __('Admin Panel') }}</x-jet-dropdown-link>
+                                @if(Auth::user()->role == 'Admin')
+                                    <x-jet-dropdown-link href="{{ route('meta') }}">{{ __('Admin Panel') }}</x-jet-dropdown-link>
+                                @endif
+                                @if(Auth::user()->role == 'User')
+                                    <x-jet-dropdown-link href="{{ route('userorders') }}">{{ __('Admin Panel') }}</x-jet-dropdown-link>
+                                @endif
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</x-jet-dropdown-link>
