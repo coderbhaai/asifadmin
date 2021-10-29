@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 class Ordermail extends Mailable
 {
+    public $x, $y;
     use Queueable, SerializesModels;
 
     /**
@@ -16,9 +17,10 @@ class Ordermail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($x, $y)
     {
-        //
+        $this->x = $x;
+        $this->y = $y;
     }
 
     /**
@@ -28,6 +30,6 @@ class Ordermail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.Ordermail');
+        return $this->subject('Order placed with AminaBoutique')->markdown('emails.Ordermail');
     }
 }

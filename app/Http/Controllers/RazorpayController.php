@@ -8,9 +8,11 @@ use Session;
 use Exception;
 use Cookie;
 use Auth;
+use Mail;
 use App\Models\Product;
 use App\Models\Course;
 use App\Models\Order;
+use App\Mail\Ordermail;
 
 class RazorpayController extends Controller
 {
@@ -88,8 +90,8 @@ class RazorpayController extends Controller
                     $dB-> save();
                 }
 
-                dd($courses, $products);
-
+                $user_email = $payment['notes']['email'];
+                Mail::to( $user_email)->cc('amit@amitkk.com')->send(new Ordermail($courses, $products));
                 Cookie::queue(Cookie::forget('cart'));
 
             } catch (Exception $e) {

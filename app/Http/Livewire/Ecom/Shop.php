@@ -8,41 +8,61 @@ use Cookie;
 
 class Shop extends Component
 {
-    public $cart = [];
+    public $data = [];
     public $perPage = 25;
     public $search = '';
     public $perPageOptions = [10,25,50,100,1000];
 
     public function mount(){
-        if(Cookie::get('cart')){
-            $this->cart = json_decode( Cookie::get('cart') );
+        if(request()->routeIs('shop')){
+            // dd(1);
+            $this->title  = 'Shop';
+            $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'status', 'updated_at')
+                            ->get();
+                            // ->search($this->search)->paginate($this->perPage);
+            // ->get();
+            // $this->data->getCollection()->transform(function ($i) {
+            //     $i['image']  =   json_decode( $i->images)[0];
+            //     return $i;
+            // })
+            // ->all()
+            // ->toArray()
+            ;
+        }else if(request()->routeIs('search')){
+            $xx = strtok(request()->path(), '/');
+            $index = strpos($xx, '-') + strlen('-');
+            $type = substr($xx, $index);
+            $url = substr( strstr(request()->path(), '/'), 1);
+            $this->title  = 'You searched for '.$url;
+            $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'updated_at')
+                                    ->where('status', 1)->where('name', 'like', '%'.$url.'%')->get();
         }else{
-            $this->cart = [];
+            $xx = strtok(request()->path(), '/');
+            $index = strpos($xx, '-') + strlen('-');
+            $type = substr($xx, $index);
+            $url = substr( strstr(request()->path(), '/'), 1);
+            $id   =   Master::select('id', 'name')->where('url', $url )->first();
+            if($id != null){
+                $this->title  = 'Product of '.ucfirst($type).' '.$id->name;
+                if($type === 'type'){
+                    $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'updated_at')
+                                    ->where('status', 1)->where('type', $id->id)->get();
+                }else{
+                    $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'updated_at')
+                                    ->where('status', 1)->whereJsonContains($type, $id->id)->get();
+                }
+            }else{
+                return redirect('/404'); 
+            }
         }
     }
 
     public function render(){
-        $data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'status', 'updated_at')
-                        ->search($this->search)->paginate($this->perPage);
-
-        $data->getCollection()->transform(function ($i) {
-            $i['image']  =   json_decode( $i->images)[0];
-            // $xx   =   Master::select('name', 'url')->whereIn('id', json_decode( $i->category ) )->get();
-            // $catArray = [];
-            // for ($j=0; $j <count($xx) ; $j++) { array_push( $catArray, $xx[$j] ); }
-            // $i['catArray']  =   $catArray;
-
-            // $y   =   Master::select('name', 'url')->whereIn('id', json_decode( $i->tag ) )->get();
-            // $tagArray = [];
-            // for ($j=0; $j <count($y) ; $j++) { array_push( $tagArray, $y[$j] ); }
-            // $i['tagArray']  =   $tagArray;
-            return $i;
-        });
+        
         return view('livewire.ecom.shop', 
             [
-                'data'              =>  $data,
-                'perPageOptions'    =>  $this->perPageOptions,
-                'cart'              =>  $this->cart
+                'data'              =>  $this->data,
+                'perPageOptions'    =>  $this->perPageOptions
             ]
         );
     }
@@ -71,23 +91,6 @@ class Shop extends Component
                 Cookie::queue( 'cart', json_encode( $cart ) );
                 $this->cart = $cart;
                 return true;
-            }
-        }
-    }
-
-    public function removeFromCart($i){
-        if(Cookie::get('cart')){
-            $this->removeIncart($i['id']);
-        }
-    }
-
-    private function removeIncart($id){
-        $cart = json_decode( Cookie::get('cart') );
-        foreach ($cart as $key => $value) {
-            if($value[0] === $id){
-                $cart[$key][1] -= 1;
-                Cookie::queue( 'cart', json_encode( $cart ) );
-                $this->cart = $cart;
             }
         }
     }
