@@ -23,6 +23,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/ecomTrending', 'App\Http\Controllers\ApiController@ecomTrending');
     Route::get('/ecomCategoryProducts/{id}', 'App\Http\Controllers\ApiController@ecomCategoryProducts');
     Route::get('/singleProduct/{id}', 'App\Http\Controllers\ApiController@singleProduct');
+    Route::get('/myOrders', 'App\Http\Controllers\ApiController@myOrders');
+    Route::post('/paymentCourse', 'App\Http\Controllers\ApiController@paymentCourse');
+    Route::post('/paymentProduct', 'App\Http\Controllers\ApiController@paymentProduct');
     Route::get('/allProducts', 'App\Http\Controllers\ApiController@allProducts'); // has to be Created
 
     Route::get('/applyCode', 'App\Http\Controllers\ApiController@applyCode'); // has to be Created
