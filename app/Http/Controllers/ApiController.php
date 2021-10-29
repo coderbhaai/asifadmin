@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Master;
 use App\Models\Course;
 use App\Models\Product;
+use App\Models\Profile;
 use App\Models\Coursereview;
 use App\Models\Marketing;
 use Illuminate\Http\Request;
@@ -175,18 +176,6 @@ class ApiController extends Controller
     }
 
     public function paymentCourse(request $request){
-        // dd($request->all());
-
-        return response()->json([
-            'data'          => $request->all(),
-            'ca'            => json_decode($request->courseArray)
-        ]);
-
-
-
-        // $de = ['name','email','phone','country','state','city','address','pin'];
-
-        // dd('hit');
         foreach ( json_decode($request->courseArray) as $i){
             $dB                     =   new Order;
             $dB->paymentId          =   $request->razorpay_payment_id;
@@ -207,7 +196,6 @@ class ApiController extends Controller
         ]);
     }
 
-
     public function paymentProduct(request $request){
         $dB                     =   new Order;
         $dB->paymentId          =   $request->razorpay_payment_id;
@@ -226,6 +214,32 @@ class ApiController extends Controller
             'success'       => true,
             'data'          => $request->all(),
         ]);
+    }
+
+    public function updateProfile(request $request){
+        if (Profile::where('userId', Auth::user()->id)->exists()) {
+            $dB                     =   Profile::where('userId', Auth::user()->id)->first();
+            $dB->address            =   json_encode( $request->address );
+            $dB->pic                =   $request->pic;
+            $dB-> save();
+
+            return response()->json([
+                'success'           => true,
+                'message'           => 'Profile Updated succesfully',
+            ]);
+        }else{
+            $dB                     =   new Profile;
+            $dB->userId             =   Auth::user()->id;
+            $dB->address            =   json_encode( $request->address );
+            $dB->pic                =   $request->pic;
+            $dB-> save();
+
+            return response()->json([
+                'success'           => true,
+                'message'           => 'Profile Created succesfully',
+            ]);
+        }
+
     }
 }
 
