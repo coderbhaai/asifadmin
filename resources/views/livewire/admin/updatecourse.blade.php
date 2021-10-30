@@ -60,10 +60,20 @@
                         <button type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mb-10" wire:click="addVideo()">Add Videos</button>
                         @for ($i = 0; $i < count($videos); $i++)
                             <div class="grid grid-cols-12 gap-6 mb-2">
-                                <div class="col-span-8">
+                                <div class="col-span-4">
+                                    <label class="block text-sm font-medium text-gray-700">Video Name</label>
+                                    <input type="text" wire:model="videos.{{$i}}.0" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Video URL" required>
+                                    @error('videos.{{$i}}.0') <span class="error" ...>{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-span-4">
                                     <label class="block text-sm font-medium text-gray-700">Video URL</label>
-                                    <input type="text" wire:model="videos.{{$i}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Video URL" required>
-                                    @error('videos.{{$i}}') <span class="error" ...>{{ $message }}</span> @enderror
+                                    <input type="text" wire:model="videos.{{$i}}.1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Video URL" required>
+                                    @error('videos.{{$i}}.1') <span class="error" ...>{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700">Duration</label>
+                                    <input type="text" wire:model="videos.{{$i}}.2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Video URL" required>
+                                    @error('videos.{{$i}}.2') <span class="error" ...>{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Remove</label>

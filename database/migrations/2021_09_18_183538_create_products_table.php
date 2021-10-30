@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->mediumText('tag')->nullable();
             $table->mediumText('shortdesc');
             $table->mediumText('longdesc');
+            $table->mediumText('additional')->nullable();
             $table->string('price');
             $table->string('sale');
             $table->string('rating')->nullable();

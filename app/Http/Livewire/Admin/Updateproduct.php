@@ -13,7 +13,7 @@ class Updateproduct extends Component
 {
     use WithFileUploads;
 
-    public $typeSelected, $catSelected, $tagSelected, $type, $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $status, $title, $description, $oldimages, $data_id, $metaId;
+    public $typeSelected, $catSelected, $tagSelected, $type, $name, $url, $shortdesc, $longdesc, $additional, $price, $sale, $rating, $status, $title, $description, $oldimages, $data_id, $metaId;
 
     public $images = [];
 
@@ -29,6 +29,7 @@ class Updateproduct extends Component
         $this->oldimages =      json_decode($this->data->images);
         $this->shortdesc =      $this->data->shortdesc;
         $this->longdesc =       $this->data->longdesc;
+        $this->additional =     $this->data->additional;
         $this->price =          $this->data->price;
         $this->sale =           $this->data->sale;
         $this->status =         $this->data->status;
@@ -94,6 +95,7 @@ class Updateproduct extends Component
             'tag' => json_encode($tag),
             'shortdesc' =>  $this->shortdesc,
             'longdesc' =>  $this->longdesc,
+            'additional' =>  $this->additional,
             'price' =>  $this->price,
             'sale' =>  $this->sale,
             'rating' => json_encode( [0, 0] ),

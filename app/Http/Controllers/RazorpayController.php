@@ -92,7 +92,9 @@ class RazorpayController extends Controller
 
                 $user_email = $payment['notes']['email'];
                 Mail::to( $user_email)->cc('amit@amitkk.com')->send(new Ordermail($courses, $products));
-                Cookie::queue(Cookie::forget('cart'));
+
+                Cookie::queue(Cookie::forget('coursebasket'));
+                Cookie::queue(Cookie::forget('productbasket'));
 
             } catch (Exception $e) {
                 return  $e->getMessage();

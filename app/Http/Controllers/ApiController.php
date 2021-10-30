@@ -64,37 +64,36 @@ class ApiController extends Controller
     }
 
     public function singleCourse($id){
-        if (Order::where('cart', $id)->where('buyer', Auth::user()->id)->exists()) {
-            $reviews =  Coursereview::leftJoin('users as b', function($join) { $join->on("b.id", "=", "coursereviews.userid"); })
-                            ->where("coursereviews.status", 1)
-                            ->where("coursereviews.courseid", $id)
-                            ->where("coursereviews.type", 'Course')
-                            ->select('coursereviews.id', 'coursereviews.review', 'coursereviews.rating', 'b.name as userName' )
-                            ->get();
-            $data = Course::select('id', 'name', 'image', 'shortdesc', 'longdesc', 'price', 'sale', 'rating', 'videos' )
-                    ->where('id', $id)->get()->map(function($i) {
-                        $i['videoArray'] = json_decode($i->videos);
-                        return $i;
-                    });    
-            return response()->json([
-                'success' => true,
-                'message' => "Happy Learning",
-                'data' => $data,
-                'reviews' => $reviews
-            ]);
+        if ( Order::where('cart', $id)->where('buyer', Auth::user()->id)->where('type', 'Course')->exists() ) {
+            $purchase = true;
         }else{
-            return response()->json([
-                'success' => false,
-                'message' => "You have not purchased this course yet",
-            ]);
+            $purchase = false;
         }
+        $reviews =  Coursereview::leftJoin('users as b', function($join) { $join->on("b.id", "=", "coursereviews.userid"); })
+                        ->where("coursereviews.status", 1)
+                        ->where("coursereviews.courseid", $id)
+                        ->where("coursereviews.type", 'Course')
+                        ->select('coursereviews.id', 'coursereviews.review', 'coursereviews.rating', 'b.name as userName' )
+                        ->get();
+        $data = Course::select('id', 'name', 'image', 'shortdesc', 'longdesc', 'price', 'sale', 'rating', 'videos' )
+                ->where('id', $id)->get()->map(function($i) {
+                    $i['videoArray'] = json_decode($i->videos);
+                    return $i;
+                });    
+        return response()->json([
+            'success' => true,
+            'message' => "Happy Learning",
+            'data' => $data,
+            'reviews' => $reviews,
+            'purchase' => $purchase
+        ]);
     }
 
     public function postReview(request $request){
         $dB                     =   new Coursereview;
         $dB->type               =   $request->type;
-        $dB->courseid           =   $request->courseid;
-        $dB->userid             =   $request->userid;
+        $dB->courseid           =   $request->id;
+        $dB->userid             =   Auth::user()->id;
         $dB->review             =   $request->review;
         $dB->rating             =   $request->rating;
         $dB->status             =   0;
@@ -151,7 +150,12 @@ class ApiController extends Controller
     }
 
     public function allProducts(){
-        $data = Product::select('id', 'name', 'images', 'shortdesc', 'price', 'sale', 'rating' )->where('status', 1)->get();
+        $data = Product::select('id', 'name', 'images', 'shortdesc', 'price', 'sale', 'rating', 'additional' )->where('status', 1)->get()->map(function($i) {
+            $i['image'] = json_decode($i->images)[0];
+            $i['stars'] = json_decode($i->rating);
+            return $i;
+        });
+
         return response()->json([
             'data'          => $data
         ]);
@@ -240,6 +244,37 @@ class ApiController extends Controller
             ]);
         }
 
+    }
+
+    public function getProfile(){
+        $data = Profile::where('userId', Auth::user()->id)->select('address as addr', 'pic')->get()->map(function($i) {
+            $i['address'] = json_decode($i->addr);
+            return $i;
+        });
+
+        return response()->json([
+            'data'           => $data
+        ]);
+
+    }
+
+    public function getProductsData( request $request){
+        if(count( json_decode( $request->productArray ))>0){
+            $data =         Product::select('id', 'name', 'url', 'price', 'sale', 'images' )
+                                ->whereIn('id', json_decode( $request->productArray ))->get()->map(function($i) {
+                $i['image']  =   json_decode( $i->images)[0];
+                return $i;
+            });    
+            return response()->json([
+                'data'           => $data
+            ]);
+        }else{
+            return response()->json([
+                'data'           => [],
+                'xx'            =>json_decode( $request->productArray ),
+                'yy'            => $request->productArray
+            ]);
+        }
     }
 }
 

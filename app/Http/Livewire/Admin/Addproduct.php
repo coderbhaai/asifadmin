@@ -12,7 +12,7 @@ class Addproduct extends Component
 {
     use WithFileUploads;
 
-    public $typeSelected, $catSelected, $tagSelected, $type, $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $status, $title, $description;
+    public $typeSelected, $catSelected, $tagSelected, $type, $name, $url, $shortdesc, $longdesc, $additional, $price, $sale, $rating, $status, $title, $description;
 
     public $images = [];
 
@@ -65,6 +65,7 @@ class Addproduct extends Component
             'tag' => json_encode($tag),
             'shortdesc' =>  $this->shortdesc,
             'longdesc' =>  $this->longdesc,
+            'additional' =>  $this->additional,
             'price' =>  $this->price,
             'sale' =>  $this->sale,
             'rating' => json_encode( [0, 0] ),
@@ -76,7 +77,7 @@ class Addproduct extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Blog Created Successfully.');
+        session()->flash('message', 'Product Created Successfully.');
         return redirect(route('adminproducts') );
     }
 }

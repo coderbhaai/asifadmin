@@ -56,15 +56,17 @@
                         <input type="number" wire:model="sale" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Sale Price" required>
                         @error('sale') <span class="error" ...>{{ $message }}</span> @enderror
                     </div>
-                    <div class="col-span-12">
+                    <div class="col-span-6">
                         <label for="title" class="block text-sm font-medium text-gray-700">Meta Title</label>
                         <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title" required/>
                         @error('title') <span class="error" ...>{{ $message }}</span> @enderror
-                    </div>
-                    <div class="col-span-12">
-                        <label for="description" class="block text-sm font-medium text-gray-700">Meta Description</label>
+                        <label for="description" class="block text-sm font-medium text-gray-700 mt-5">Meta Description</label>
                         <input type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description" required/>
                         @error('description') <span class="error" ...>{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-span-6">
+                        <label for="additional" class="block text-sm font-medium text-gray-700">Additional Information</label>
+                        <textarea wire:model="additional" class="w-full focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-40"></textarea>
                     </div>
                     <div wire:ignore class="col-span-12">
                         <label for="shortdesc" class="block text-sm font-medium text-gray-700">Short Description</label>

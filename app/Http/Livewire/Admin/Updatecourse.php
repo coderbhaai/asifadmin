@@ -87,6 +87,6 @@ class Updatecourse extends Component
         return redirect(route('admincourses') );
     }
 
-    public function addVideo(){ array_push($this->videos, ''); }
+    public function addVideo(){ array_push($this->videos, ['', '', '']); }
     public function removeVideo($id){ array_splice($this->videos, $id, 1); }
 }

@@ -27,8 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/paymentCourse', 'App\Http\Controllers\ApiController@paymentCourse');
     Route::post('/paymentProduct', 'App\Http\Controllers\ApiController@paymentProduct');
     Route::post('/updateProfile', 'App\Http\Controllers\ApiController@updateProfile');
-    Route::get('/allProducts', 'App\Http\Controllers\ApiController@allProducts'); // has to be Created
-
-    Route::get('/applyCode', 'App\Http\Controllers\ApiController@applyCode'); // has to be Created
+    Route::get('/getProfile', 'App\Http\Controllers\ApiController@getProfile');
+    Route::post('/getProductsData', 'App\Http\Controllers\ApiController@getProductsData');
 });
 

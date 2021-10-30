@@ -43,7 +43,7 @@
                     @foreach($data as $i)
                         <tr class="">
                             <td class="px-1 py-1 text-center">{{ $loop->index +1}}</td>
-                            <td class="px-1 py-1"><a href="/product/{{$i->url}}" target="_blank">{{$i->title}}</a></td>
+                            <td class="px-1 py-1"><a href="/product/{{$i->url}}" target="_blank">{{$i->name}}</a></td>
                             <td class="px-1 py-1"><img src="/storage/product/{{$i->image}}" class="w-32"/></td>
                             <td class="px-1 py-1">@foreach($i->catArray as $j)<a href="/{{$j->url}}" target="_blank">{{$j->name}}, </a>@endforeach</td>
                             <td class="px-1 py-1">@foreach($i->tagArray as $j)<a href="/{{$j->url}}" target="_blank">{{$j->name}}, </a>@endforeach</td>
