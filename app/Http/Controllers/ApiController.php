@@ -180,20 +180,20 @@ class ApiController extends Controller
     }
 
     public function paymentCourse(request $request){
-        foreach ( json_decode($request->courseArray) as $i){
+        // foreach ( json_decode($request->courseArray) as $i){
             $dB                     =   new Order;
             $dB->paymentId          =   $request->razorpay_payment_id;
             $dB->orderId            =   $request->razorpay_order_id;
             $dB->type               =   'Course';
             $dB->buyer              =   Auth::user()->id;
             $dB->address            =   json_encode( $request->details );
-            $dB->cart               =   $i[0];
-            $dB->amount             =   $i[1];
+            $dB->cart               =   $request->cart;
+            $dB->amount             =   $request->amount;
             $dB->discount           =   0;
             $dB->status             =   "Ordered";
             $dB->remarks            =   "Ordered";
             $dB-> save();
-        }
+        // }
         return response()->json([
             'success'       => true,
             'data'          => $request->all(),
