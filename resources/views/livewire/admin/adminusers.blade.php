@@ -38,7 +38,7 @@
                     @foreach($data as $i)
                         <tr class="">
                             <td class="px-1 py-1 text-center">{{ $loop->index +1}}</td>
-                            <td class="text-center px-1 py-1">{{$i->name}} ( {{$i->email}} )</td>
+                            <td class="text-center px-1 py-1">{{$i->name}} ( {{$i->email}} @if(count( $i->address )) | {{ $i->address[2] }} @endif )</td>
                             <td class="text-center px-1 py-1">{{$i->role}}</td>
                             <td class="text-center px-1 py-1">{{$i->status === 0? 'Not Active' : 'Active'}}</td>
                             <td class="text-center px-1 py-1">{{date('d-m-Y', strtotime($i->updated_at))}}</td>

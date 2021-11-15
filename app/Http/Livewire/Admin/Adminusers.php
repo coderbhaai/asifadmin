@@ -18,9 +18,19 @@ class Adminusers extends Component
 
     public function render(){
         $data =   User::leftJoin('profiles as a', function($join) { $join->on("a.userId", "=", "users.id"); })
-                        ->select('users.id', 'users.name', 'users.email', 'users.role', 'users.status', 'users.updated_at', 'a.address')
+                        ->select('users.id', 'users.name', 'users.email', 'users.role', 'users.status', 'users.updated_at', 'a.address as addr')
                         ->search($this->search)
                         ->paginate($this->perPage);
+
+        $data->getCollection()->transform(function ($i) {
+            if($i->addr){
+                $i['address']  =   json_decode( $i->addr);
+            }else{
+                $i['address'] = [];
+            }
+            return $i;
+        });
+        
         return view('livewire.admin.adminusers',
             [
                 'data'              =>  $data,
