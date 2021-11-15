@@ -18,6 +18,7 @@
                     <div class="col-span-6">
                         <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
                         <input type="file" wire:model="image">
+                        @if($oldimage)<img src="/storage/course/{{$oldimage}}" alt="" class="w-20 p-1"/>@endif
                         @error('image') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-6">

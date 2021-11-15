@@ -19,6 +19,11 @@
                     <div class="col-span-6">
                         <label for="images" class="block text-sm font-medium text-gray-700">Images</label>
                         <input type="file" wire:model="images" multiple>
+                        @if($oldimages)
+                            <div class="flex items-center flex-wrap mt-2">
+                                @foreach($oldimages as $i)<img src="/storage/product/{{$i}}" alt="" class="w-20 p-1"/>@endforeach
+                            </div>
+                        @endif
                         @error('images') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div wire:ignore class="col-span-6">
