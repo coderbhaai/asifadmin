@@ -13,7 +13,7 @@
         @error('review') <span class="error text-action font-bold" ...>{{ $message }}</span> @enderror
     </div>
     <input wire:model="description" class="hidden" value="{{$type}}"/>
-    {{ $type }}
+    <input wire:model="description" class="hidden" value="{{$courseid}}"/>
     <div class="text-center mt-5">
         <button type="submit" class="relative overflow-hidden uppercase z-50 inline-block text-center shadow-amit amitBtn py-3 px-12 font-bold rounded-full">Submit</button>
     </div>

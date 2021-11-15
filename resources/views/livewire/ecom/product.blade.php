@@ -23,7 +23,7 @@
                     @if(Auth::user())
                         <div>
                             <h2 class="text-xl font-bold mt-10">Share a review</h2>
-                            @livewire('form.reviewform', ['type'=>"Product"])
+                            @livewire('form.reviewform', ['type'=>"Product", 'courseid'=>$pid])
                         </div>
                     @endif
                 </div>

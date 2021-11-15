@@ -8,7 +8,7 @@ use App\Models\Coursereview;
 
 class Product extends Component
 {
-    public $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $images, $activeImage;
+    public $pid, $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $images, $activeImage;
     public $reviews = [];
     public $similar = [];
 
@@ -19,6 +19,7 @@ class Product extends Component
                 $i['image']  =   json_decode( $i->images)[0];
                 return $i;
             });
+            $this->pid =                $this->data->id;
             $this->name =               $this->data->name;
             $this->url =                $this->data->url;
             $this->shortdesc =          $this->data->shortdesc;
