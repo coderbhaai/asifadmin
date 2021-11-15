@@ -3,7 +3,7 @@
     <div class="flex grid grid-cols-12 gap-4 gap-x-3 py-12">
         <div class="col-span-12 md:col-span-9">
             <div class="flex grid grid-cols-12 gap-4 gap-x-3 py-12">
-                <div class="col-span-12 md:col-span-3">
+                <div class="col-span-12 md:col-span-5">
                     <div class="flex items-center flex-wrap">
                         <img src="/storage/product/{{$activeImage}}" alt="" class="mb-2">
                         @foreach($images as $i)
@@ -14,7 +14,7 @@
                         <button type="button" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-action w-full">Add To Cart</button>
                     </div>
                 </div>
-                <div class="col-span-12 md:col-span-6">
+                <div class="col-span-12 md:col-span-7">
                     {!! $shortdesc !!}
                     <p class="my-3 text-xl font-medium">Price - &#8377;{{$sale}}</p>
                 </div>
