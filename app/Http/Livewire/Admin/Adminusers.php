@@ -17,7 +17,8 @@ class Adminusers extends Component
     public $perPageOptions = [10,25,50,100,1000];
 
     public function render(){
-        $data =   User::select('id', 'name', 'email', 'role', 'status', 'updated_at')
+        $data =   User::leftJoin('profiles as a', function($join) { $join->on("a.userId", "=", "users.id"); })
+                        ->select('users.id', 'users.name', 'users.email', 'users.role', 'users.status', 'users.updated_at', 'a.address')
                         ->search($this->search)
                         ->paginate($this->perPage);
         return view('livewire.admin.adminusers',

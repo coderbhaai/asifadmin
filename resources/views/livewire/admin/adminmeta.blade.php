@@ -73,16 +73,16 @@
                                             @error('url') <span class="error" ...>{{ $message }}</span> @enderror
                                         </div>
                                         <div class="col-span-6">
-                                            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                                            <label for="title" class="block text-sm font-medium text-gray-700">Title - {{ strlen( $title ) }}</label>
                                             <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Title">
                                             @error('title') <span class="error" ...>{{ $message }}</span> @enderror
                                         </div>
                                         <div class="col-span-12">
-                                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                                            <label for="description" class="block text-sm font-medium text-gray-700">Description - {{ strlen( $description ) }}</label>
                                             <textarea type="text" wire:model="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add Description"></textarea>
                                             @error('description') <span class="error" ...>{{ $message }}</span> @enderror
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 <div class="bg-gray-50 text-right mt-5">
                                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>

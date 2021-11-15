@@ -7,7 +7,6 @@ use Livewire\Component;
 class Adminsidebar extends Component
 {
     public $data =[
-        // [ "link"=>"dashboard", "name"=>"Dashboard" ],
         [ "link"=>"adminmaster", "name"=>"Masters" ],
         [ "link"=>"meta", "name"=>"Meta Tags" ],
         [ "link"=>"blogmeta", "name"=>"Blog Meta" ],
@@ -20,7 +19,7 @@ class Adminsidebar extends Component
         [ "link"=>"adminproducts", "name"=>"Products" ],
         [ "link"=>"admincourses", "name"=>"Courses" ],
         [ "link"=>"coursereviews", "name"=>"Reviews" ],
-        [ "link"=>"adminmarketing", "name"=>"marketing" ],
+        [ "link"=>"adminmarketing", "name"=>"Videos" ],
         [ "link"=>"adminorders", "name"=>"Orders" ],
     ];
 

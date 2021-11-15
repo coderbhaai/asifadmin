@@ -2,7 +2,7 @@
     <div class="flex grid grid-cols-12 gap-4 gap-x-3">
         @livewire('parts.adminsidebar')
         <div class="col-span-12 md:col-span-10 px-3 md:pt-10">
-            <h1 class="text-center text-3xl font-bold py-2 mb-6">Admin Marketing </h1>
+            <h1 class="text-center text-3xl font-bold py-2 mb-6">Admin Videos </h1>
             <div class="md:flex justify-between mb-2 md:mb-0">
                 <button wire:click="openModal()" class="w-full md:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Add Video</button>
                 <div class="row">
