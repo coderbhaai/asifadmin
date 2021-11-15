@@ -26,7 +26,5 @@ class Adminsubscribe extends Component
         );
     }
 
-    public function updatingSearch(){
-        $this->resetPage();
-    }
+    public function updatingSearch(){ $this->resetPage(); }
 }

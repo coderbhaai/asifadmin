@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Meta;
 use Livewire\WithPagination;
 
-class Adminmeta extends Component
+class Adminmedia extends Component
 {
     use WithPagination;
     public $url, $title, $description, $data_id;
@@ -19,15 +19,8 @@ class Adminmeta extends Component
 
     public function render(){
         $data =   Meta::select('id', 'title', 'url', 'description', 'updated_at')
-                        ->search($this->search)
-                        ->orderBy($this->sortBy, $this->sortDirection)
-                        ->paginate($this->perPage);
-        return view('livewire.admin.adminmeta', 
-            [
-                'data'              =>  $data,
-                'perPageOptions'    =>  $this->perPageOptions,
-            ]
-        );
+                ->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
+        return view('livewire.admin.adminmedia');
     }
 
     public function sortBy($field){
@@ -66,17 +59,6 @@ class Adminmeta extends Component
         $this->resetInputFields();
     }
 
-    public function closeModal(){
-        $this->resetInputFields();
-    }
-
-    public function edit($i){
-        $this->url = $i['url'];
-        $this->title = $i['title'];
-        $this->description = $i['description'];
-        $this->data_id = $i['id'];
-        $this->isOpen = true;
-    }
-
+    public function closeModal(){ $this->resetInputFields(); }
     public function updatingSearch(){ $this->resetPage(); }
 }

@@ -37,15 +37,9 @@ class Adminblog extends Component
     }
 
     public function sortBy($field){
-        if($this->sortDirection == 'asc'){
-            $this->sortDirection = 'desc';
-        }else{
-            $this->sortDirection = 'asc';
-        }
+        if($this->sortDirection == 'asc'){ $this->sortDirection = 'desc'; }else{ $this->sortDirection = 'asc'; }
         return $this->sortBy = $field;
     }
 
-    public function updatingSearch(){
-        $this->resetPage();
-    }
+    public function updatingSearch(){ $this->resetPage(); }
 }
