@@ -3,13 +3,15 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\Meta;
+use App\Models\Media;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class Adminmedia extends Component
 {
     use WithPagination;
-    public $url, $title, $description, $data_id;
+    use WithFileUploads;
+    public $cover_img;
     public $isOpen = 0;
     public $sortBy = 'id';
     public $sortDirection = 'asc';
@@ -18,9 +20,13 @@ class Adminmedia extends Component
     public $perPageOptions = [10,25,50,100,1000];
 
     public function render(){
-        $data =   Meta::select('id', 'title', 'url', 'description', 'updated_at')
+        $data =   Media::select('id', 'name', 'updated_at')
                 ->search($this->search)->orderBy($this->sortBy, $this->sortDirection)->paginate($this->perPage);
-        return view('livewire.admin.adminmedia');
+        return view('livewire.admin.adminmedia',
+            [
+                'data' => $data
+            ]
+        );
     }
 
     public function sortBy($field){
@@ -34,27 +40,19 @@ class Adminmedia extends Component
     }
 
     private function resetInputFields(){
-        $this->url = '';
-        $this->title = '';
-        $this->description = '';
-        $this->data_id = '';
+        $this->cover_img = '';
         $this->isOpen = false;
     }
 
     public function submit(){
         $this->validate([
-            'url' => 'required',
-            'title' => 'required',
-            'description' => 'required',
+            'cover_img' => 'required | image | max:2048',
         ]);
-        $url = strtolower( str_replace(' ', '-', $this->url) );
-
-        Meta::updateOrCreate(['id' => $this->data_id], [
-            'url' => $url,
-            'title' => $this->title,
-            'description' => $this->description
+        $fileName1 = time().'-'.$this->cover_img->getClientOriginalName(); $this->cover_img->storeAs('public/media', $fileName1);
+        Media::create([
+            'name' => $fileName1,
         ]);
-        session()->flash('message', $this->data_id ? 'Meta Updated Successfully.' : 'Meta Created Successfully.'); 
+        session()->flash('message', 'Media Uploaded Successfully.'); 
         $this->closeModal();
         $this->resetInputFields();
     }
