@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Ecom;
 
 use Livewire\Component;
 use App\Models\Product;
+use App\Models\Master;
 use Cookie;
 
 class Shop extends Component
@@ -16,16 +17,7 @@ class Shop extends Component
     public function mount(){
         if(request()->routeIs('shop')){
             $this->title  = 'Shop';
-            $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'status', 'updated_at')
-                            ->get();
-                            // ->search($this->search)->paginate($this->perPage);
-            // ->get();
-            // $this->data->getCollection()->transform(function ($i) {
-            //     $i['image']  =   json_decode( $i->images)[0];
-            //     return $i;
-            // })
-            // ->all()
-            // ->toArray()
+            $this->data =   Product::select('id', 'name', 'url', 'images', 'category', 'tag', 'price', 'sale', 'status', 'updated_at')->get();
             ;
         }else if(request()->routeIs('search')){
             $xx = strtok(request()->path(), '/');
@@ -41,6 +33,7 @@ class Shop extends Component
             $type = substr($xx, $index);
             $url = substr( strstr(request()->path(), '/'), 1);
             $id   =   Master::select('id', 'name')->where('url', $url )->first();
+            // dd($type);
             if($id != null){
                 $this->title  = 'Product of '.ucfirst($type).' '.$id->name;
                 if($type === 'type'){
@@ -56,14 +49,8 @@ class Shop extends Component
         }
     }
 
-    public function render(){
-        
-        return view('livewire.ecom.shop', 
-            [
-                'data'              =>  $this->data,
-                'perPageOptions'    =>  $this->perPageOptions
-            ]
-        );
+    public function render(){        
+        return view('livewire.ecom.shop');
     }
 
     public function addToCart($i){

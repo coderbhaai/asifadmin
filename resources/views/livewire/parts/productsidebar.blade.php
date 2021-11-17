@@ -1,5 +1,5 @@
 <div>
-    @if(count($similar))
+    @if($similar && count($similar))
         <h2 class="text-center my-3 text-xl font-bold">Similar Products</h2>
         @foreach($similar as $i)
             <div class="bg-white mb-4 p-2 transition duration-500 ease-in-out transform hover:-translate-y-1 shadow-lg">
@@ -22,7 +22,7 @@
         <h2 class="text-center my-3 text-xl font-bold mt-10">Product Categories</h2>
         @foreach($category as $i)
             <div class="bg-white mb-4 p-2 transition duration-500 ease-in-out transform hover:-translate-y-1 shadow-lg">
-                <a href="/proudct-cat/{{$i->url}}"><h3>{{$i->name}}</h3></a>
+                <a href="/proudct-category/{{$i->url}}"><h3>{{$i->name}}</h3></a>
             </div>
         @endforeach
     @endif

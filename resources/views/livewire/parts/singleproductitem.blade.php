@@ -1,7 +1,7 @@
 <div class="col-span-12 md:col-span-4 mb-3 amitBtnGroup">
     <div class="bg-white rounded-lg shadow-2xl overflow-hidden amitShadow">
         <a href="/product/{{$item->url}}">
-            <img src="/storage/product/{{json_decode( $item->images ) [0] }}" alt="Website Development in Delhi" class="" width="380" height="380"/>
+            <img src="/storage/product/{{json_decode( $item->images ) [0] }}" alt="Website Development in Delhi" class="mx-auto max-w-200" width="380" height="380"/>
         </a>
         <div class="p-3">
             <a href="/product/{{$item->url}}">

@@ -53,6 +53,9 @@ Route::get("/privacy-policy", Privacy::class)->name('privacy');
 Route::get("/videos", Videos::class)->name('videos');
 
 Route::get("/shop", Shop::class)->name('shop');
+Route::get("/proudct-type/{url}", Shop::class)->name('typeshop');
+Route::get("/proudct-category/{url}", Shop::class)->name('catshop');
+Route::get("/proudct-tag/{url}", Shop::class)->name('tagshop');
 Route::get("/product/{url}", Product::class)->name('product');
 Route::get("/cart", Cart::class)->name('cart');
 Route::get("/checkout", Checkout::class)->name('checkout');
