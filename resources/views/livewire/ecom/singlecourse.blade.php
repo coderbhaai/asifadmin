@@ -3,18 +3,32 @@
     <div class="flex grid grid-cols-12 gap-4 gap-x-3 py-12">
         <div class="col-span-12 md:col-span-9">
             <div class="flex grid grid-cols-12 gap-4 gap-x-3 py-12">
-                <div class="col-span-12 md:col-span-3">
+                <div class="col-span-12 md:col-span-5">
                     <img src="/storage/course/{{$image}}" alt="" class="mb-2">
                     <div class="bg-gray-50 mt-5">
                         <button type="button" wire:click="addToCart({{ $data['id'] }})" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-action w-full">Add To Cart</button>
                     </div>
                 </div>
-                <div class="col-span-12 md:col-span-6">
+                <div class="col-span-12 md:col-span-7">
                     {!! $shortdesc !!}
                     <p class="my-3 text-xl font-medium">Price - &#8377; {{$sale}}</p>
                 </div>
                 <div class="col-span-12">
                     {!! $longdesc !!}
+                    <h2 class="text-center my-3 text-xl md:text-4xl font-semibold">Videos</h2>
+                    @foreach($videos as $i)
+                        <div class="flex grid grid-cols-12 gap-4 gap-x-3 mb-2">
+                            <div class="col-span-12 md:col-span-6">
+                                <p>{{$i[0]}}</p>
+                            </div>
+                            <div class="col-span-12 md:col-span-3">
+                                <p>{{$i[2]}} Minutes</p>
+                            </div>
+                            <div class="col-span-12 md:col-span-3 text-center">
+                                <button type="button" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-action">Join Today</button>
+                            </div>
+                        </div>
+                    @endforeach
                     @if(Auth::user())
                         <div>
                             <h2 class="text-xl font-bold mt-10">Share a review</h2>

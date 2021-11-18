@@ -11,7 +11,7 @@ use App\Models\Coursereview;
 class Singlecourse extends Component
 {
 
-    public $name, $url, $shortdesc, $longdesc, $price, $sale, $rating, $image;
+    public $name, $url, $shortdesc, $longdesc,$price, $sale, $rating, $image;
     public $videos = [];
     public $reviews = [];
     public $similar = [];
@@ -28,7 +28,7 @@ class Singlecourse extends Component
             $this->sale =               $this->data->sale;
             $this->image =               $this->data->image;
             $this->rating =             json_decode( $this->data->rating );
-            // $this->videos =             json_decode( $this->data->videos );
+            $this->videos =             json_decode( $this->data->videos );
             $this->reviews =            Coursereview::where('type', 'Course')->where('courseid', $this->data->id)->where('status', 1)->get();
         }else{
             return redirect('/404');
