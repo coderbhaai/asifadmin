@@ -33,7 +33,6 @@ class Shop extends Component
             $type = substr($xx, $index);
             $url = substr( strstr(request()->path(), '/'), 1);
             $id   =   Master::select('id', 'name')->where('url', $url )->first();
-            // dd($type);
             if($id != null){
                 $this->title  = 'Product of '.ucfirst($type).' '.$id->name;
                 if($type === 'type'){

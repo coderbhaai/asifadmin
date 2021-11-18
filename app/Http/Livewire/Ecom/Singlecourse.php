@@ -45,26 +45,27 @@ class Singlecourse extends Component
             if( !in_array($id, $courseInCart) ){
                 array_push( $courseInCart, $id );
                 Cookie::queue( 'coursebasket', json_encode( $courseInCart ) );
-                $coursebasket = Cookie::get('coursebasket');
-                
-                $this->sendCartNumber( $coursebasket );
+                $this->sendCartNumber( $courseInCart );
+                session()->flash('message', 'Cart Updated Successfully.');
+            }else{
+                session()->flash('message', 'Course exists in cart');
             }
         }else{
             Cookie::queue( 'coursebasket', json_encode( [$id] ) ); 
             $this->sendCartNumber( [$id] );
+            session()->flash('message', 'Cart Updated Successfully.');
         }
         
     }
 
     public function sendCartNumber($coursebasket){
         $count = count( $coursebasket );
-
+        
         if(Cookie::get('productbasket')){
             $productbasket = json_decode( Cookie::get('productbasket') );
-            foreach ($productbasket as $i) { $count += $i; }
+            if( count( $productbasket ) ){ foreach ($productbasket as $i) { $count += $i[1]; } }
         }
 
         $this->emit('itemAdded', $count);
-        session()->flash('message', 'Cart Updated Successfully.');
     }
 }

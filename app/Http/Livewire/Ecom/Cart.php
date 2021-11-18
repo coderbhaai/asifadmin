@@ -27,10 +27,9 @@ class Cart extends Component
 
     public function mount(){        
         if( Cookie::get('coursebasket') || Cookie::get('productbasket') ){
-            if(Cookie::get('coursebasket')){ $this->coursebasket = json_decode( Cookie::get('coursebasket') ); }
-            if(Cookie::get('productbasket')){ $this->productbasket = json_decode( Cookie::get('productbasket') ); }
-
-            $this->getProductsFromCart($this->coursebasket, $this->productbasket);
+            if(Cookie::get('coursebasket')){ $this->coursebasket = json_decode( Cookie::get('coursebasket') ); }else{ $this->coursebasket = []; }
+            if(Cookie::get('productbasket')){ $this->productbasket = json_decode( Cookie::get('productbasket') ); }else{ $this->productbasket = []; }
+            $this->getProductsFromCart();
         }
     }
 
@@ -47,67 +46,82 @@ class Cart extends Component
     }
 
     public function addToCart($i){
-        if(Cookie::get('cart')){
+        if(Cookie::get('productbasket')){
             $exists = $this->addIncart($i['id']);
+            session()->flash('message', 'Cart Updated Successfully.');
             if(!$exists){ 
-                $cart = json_decode( Cookie::get('cart') );
-                array_push( $cart, [ $i['id'], 1 ] ); 
-                $this->cart = $cart;
-                Cookie::queue( 'cart', json_encode( $cart ) );
-                $this->getProductsFromCart($cart);
+                $productInCart = json_decode( Cookie::get('productbasket') );
+                array_push( $productInCart, [ $i['id'], 1 ] ); 
+                $this->cart = $productInCart;
+                Cookie::queue( 'productbasket', json_encode( $productInCart ) );
+                $this->productbasket = $productInCart;
+                $this->getProductsFromCart();
+                $this->sendCartNumber( $this->coursebasket, $productInCart);
             }
         }else{
-            $cart = [];
-            array_push( $cart, [ $i['id'], 1 ] );
-            Cookie::queue( 'cart', json_encode( $cart ) );
-            $this->getProductsFromCart($cart);
-        }
+            $productInCart = [];
+            array_push( $productInCart, [ $i['id'], 1 ] );
+            Cookie::queue( 'productbasket', json_encode( $productInCart ) );
+            $this->productbasket = $productInCart;
+            $this->getProductsFromCart();
+            $this->sendCartNumber( $this->coursebasket, $productInCart);
+        }        
     }
 
     private function addIncart($id){
-        $cart = json_decode( Cookie::get('cart') );
-        foreach ($cart as $key => $value) {
+        $productInCart = json_decode( Cookie::get('productbasket') );
+        foreach ($productInCart as $key => $value) {
             if($value[0] === $id){
-                $cart[$key][1] += 1;
-                Cookie::queue( 'cart', json_encode( $cart ) );
-                $this->cart = $cart;
-                $this->getProductsFromCart($cart);                
+                $productInCart[$key][1] += 1;
+                Cookie::queue( 'productbasket', json_encode( $productInCart ) );
+                $this->productbasket = $productInCart;
+                $this->getProductsFromCart();
+                $this->sendCartNumber( $this->coursebasket, $productInCart);
                 return true;
             }
         }
     }
 
-    public function removeFromCart($i){
-        if(Cookie::get('cart')){
-            $this->removeIncart($i['id']);
+    public function removeCourseFromCart($id){
+        if(Cookie::get('coursebasket')){
+            $courseInCart = json_decode( Cookie::get('coursebasket') );
+            foreach ( $courseInCart as $key => $value ) {
+                if($value === $id){ 
+                    array_splice($courseInCart, $key, 1);
+                    Cookie::queue( 'coursebasket', json_encode( $courseInCart ) );
+                    $this->coursebasket = $courseInCart;
+                    $this->getProductsFromCart();
+                    $this->sendCartNumber( $courseInCart, $this->productbasket);
+                }
+            }
+            session()->flash('message', 'Cart Updated Successfully.');
         }
     }
 
-    private function removeIncart($id){
-        $cart = json_decode( Cookie::get('cart') );
-        foreach ($cart as $key => $value) {
-            if($value[0] === $id){
-                if($cart[$key][1] === 1){
-                    array_splice($cart, $key, 1);
-                }else{
-                    $cart[$key][1] -= 1;
+    public function removeProductFromCart($id){
+        if(Cookie::get('productbasket')){
+            $productInCart = json_decode( Cookie::get('productbasket') );
+            foreach ( $productInCart as $key => $value ) {
+                if($value[0] === $id){
+                    if($productInCart[$key][1] === 1){ array_splice($productInCart, $key, 1); }else{ $productInCart[$key][1] -= 1; }
+                    Cookie::queue( 'productbasket', json_encode( $productInCart ) );
+                    $this->productbasket = $productInCart;
+                    $this->getProductsFromCart();
+                    $this->sendCartNumber( $this->coursebasket, $productInCart);
                 }
-                Cookie::queue( 'cart', json_encode( $cart ) );
-                $this->cart = $cart;
-                $this->getProductsFromCart($cart);
             }
         }
     }
 
-    private function getProductsFromCart( $coursebasket, $productbasket ){
-        $productIds = []; foreach ($productbasket as $i) { array_push($productIds, $i[0]); }
+    private function getProductsFromCart(){
+        $productIds = []; foreach ($this->productbasket as $i) { array_push($productIds, $i[0]); }
         $products = Product::select('id', 'name', 'url', 'price', 'sale', 'images' )->whereIn('id', $productIds)->get()->map(function($i) {
             $i['image']  =   json_decode( $i->images)[0];
-            foreach ($this->productbasket as $j) { if($i->id === $j[0]){ $i['amount'] = $j[1]; } }            
+            foreach ( $this->productbasket as $j ) { if($i->id == $j[0]){ $i['amount'] = $j[1];  }  }
             return $i;
         });
         
-        $courses = Course::select('id', 'name', 'url', 'price', 'sale', 'image' )->whereIn('id', $coursebasket)->get();
+        $courses = Course::select('id', 'name', 'url', 'price', 'sale', 'image' )->whereIn('id', $this->coursebasket)->get();
 
         $total = 0;
         foreach ($products as $i) { $total += $i['amount'] * $i['sale'];  }
@@ -139,5 +153,12 @@ class Cart extends Component
         return redirect('/login');
         
         // Changes made in config/fortify.php
+    }
+
+    public function sendCartNumber( $coursebasket, $productbasket ){
+        $count = 0;
+        if(Cookie::get('productbasket')){ foreach ($productbasket as $i) { $count += $i[1]; } }
+        if(Cookie::get('coursebasket')){ $count += count( $coursebasket );         }
+        $this->emit('itemAdded', $count);
     }
 }

@@ -36,4 +36,7 @@
             @endforeach
         </div>        
     </div>
+    @if(session('message'))
+        @livewire('parts.sweetalert', ['message' => session('message') ])
+    @endif
 </div>
