@@ -83,25 +83,26 @@
             <x-jet-responsive-nav-link href="{{ route('courses') }}" class="text-white hover:cursor-pointer">{{ __('Courses') }}</x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('shop') }}" class="text-white hover:cursor-pointer">{{ __('Shop') }}</x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('blogs') }}" class="text-white hover:cursor-pointer">{{ __('Blog') }}</x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('cart') }}" class="text-white hover:cursor-pointer">{{ __('Cart') }}</x-jet-responsive-nav-link>
             @if(!Auth::user())
-                        <div class="dd">
-                            <x-jet-dropdown align="right" width="48" height="100%">
-                                <x-slot name="trigger">
-                                    <span class="text-white h-full hover:cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 hover:border-action focus:outline-none focus:border-action transition">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
-                                </x-slot>
-                                <x-slot name="content">
-                                    <x-jet-dropdown-link href="/register">Register</x-jet-dropdown-link>
-                                    <x-jet-dropdown-link href="/login">Login</x-jet-dropdown-link>
-                                </x-slot>
-                            </x-jet-dropdown>
-                        </div>
-                    @endif
+                <div class="dd">
+                    <x-jet-dropdown align="right" width="48" height="100%">
+                        <x-slot name="trigger">
+                            <span class="text-white h-full hover:cursor-pointer inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 hover:border-action focus:outline-none focus:border-action transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg><svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span>
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-jet-dropdown-link href="/register">Register</x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="/login">Login</x-jet-dropdown-link>
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
+            @endif
         </div>
         <div class="pb-2 border-t border-gray-200">
             <div class="space-y-1">
                 @if(Auth::user())
-                    <form method="POST" action="{{ route('logout') }}">@csrf <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</x-jet-responsive-nav-link></form>
+                    <form method="POST" action="{{ route('logout') }}">@csrf <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="text-white">{{ __('Log Out') }}</x-jet-responsive-nav-link></form>
                 @endif
             </div>
         </div>

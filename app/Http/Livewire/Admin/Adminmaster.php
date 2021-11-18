@@ -69,7 +69,7 @@ class Adminmaster extends Component
         ]);
         $url = strtolower( str_replace(' ', '-', $this->url) );
         
-        if($this->type == "prodCat" || $this->type == "prodTag"){
+        // if($this->type == "prodCat" || $this->type == "prodTag"){
             if($this->image){
                 $fileName1 = time().'-'.$this->image->getClientOriginalName(); 
                 $this->tab1 = $fileName1;
@@ -81,7 +81,7 @@ class Adminmaster extends Component
             }else{
                 $this->tab1 = $this->oldimage;
             }
-        }
+        // }
         
         Master::updateOrCreate(['id' => $this->data_id], [
             'type' => $this->type,
