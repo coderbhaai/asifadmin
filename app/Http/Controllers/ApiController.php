@@ -40,7 +40,7 @@ class ApiController extends Controller
             'banner' => $banner,
             'ads' => $ads,
         ]);
-    }
+    } 
 
     public function marketing(){
         $data = Marketing::select('id', 'heading', 'video', 'description')->where('status', 1)->get();
