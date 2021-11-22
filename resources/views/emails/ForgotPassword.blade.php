@@ -34,7 +34,7 @@
     <h2>Welcome, {{ $user->name }}</h2>
     <p>We are happy to have you onboard with us. </p>
     <p>Please click on the below button to reset your password.</p><br>
-    <a href="http://asifweb.test/reset-password/{{$token}}"><button>Reset Password 2</button></a><br>
+    <a href="https://www.aminaboutique.in/reset-password/{{$token}}"><button>Reset Password 2</button></a><br>
     <p>Thanks a lot</p>
     <h2>Team Amina Boutique</h2>
 		

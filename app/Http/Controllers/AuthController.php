@@ -9,6 +9,7 @@ use Mail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPassword;
+use Illuminate\Support\Facades\Password; 
 
 class AuthController extends Controller
 {
@@ -95,37 +96,15 @@ class AuthController extends Controller
         }
     }
 
-    // public function forgotPassword(Request $request){
-    //     $response = [
-    //         'success'           => true,
-    //         'email'             => $request->email
-    //     ];
-    //     return response()->json($response, 201);
-    // }
-
-    public function forgotPassword(Request $request){
+    public function forgotPassword(Request $request) {
         $user = User::where('email', $request->email)->get()->first();
         if(is_null($user)){
             $response = ['success'=>false, 'message'=>"No account by this name. Please register"];
         }else{
-            $token = substr(sha1(rand()), 0, 30);
-            $date = now();
-            DB::table('password_resets')
-                ->updateOrInsert(
-                    ['email' => $request->email],
-                    ['token' => $token, 'created_at' => $date]
-                );
-
-            // $user_email = $request->email;
-            // Mail::to( $user_email)->send(new ForgotPassword($token, $user)); 
-            $response = [
-                'success'=>true, 
-                'message' => "Password Reset Email Sent. Please Check",
-                'email' => $request->email,
-                'token' => $token
-            ];
+            $credentials = request()->validate(['email' => 'required|email']);
+            Password::sendResetLink($credentials);
+            $response = ['success'=>true, "message" => 'Reset password link sent on your email id.'];
         }
         return response()->json($response, 201);
     }
-
 }

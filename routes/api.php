@@ -31,5 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/getProfile', 'App\Http\Controllers\ApiController@getProfile');
     Route::post('/getProductsData', 'App\Http\Controllers\ApiController@getProductsData');
     Route::get('/allProducts', 'App\Http\Controllers\ApiController@allProducts');
+
+    Route::get('/getCart', 'App\Http\Controllers\ApiController@getCart');
+    Route::post('/addToCart', 'App\Http\Controllers\ApiController@addToCart');
 });
 

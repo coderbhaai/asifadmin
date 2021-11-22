@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Profile;
 use App\Models\Coursereview;
 use App\Models\Marketing;
+use App\Models\Appcart;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -284,6 +285,37 @@ class ApiController extends Controller
                 'yy'            => $request->productArray
             ]);
         }
+    }
+
+    public function getCart(){
+        $data   =   Appcart::where('userId', Auth::user()->id)->get()->map(function($i) {
+            $i['cartArray'] = json_decode($i->cart);
+            return $i;
+        });
+        
+        return response()->json([
+            'data'           =>  $data
+        ]);
+    }
+
+    public function addToCart(request $request){
+        if ( Appcart::where('userId', Auth::user()->id)->exists() ) {
+            $dB                     =   Appcart::where('userId', Auth::user()->id)->first();
+            $dB->cart               =   json_encode( $request->cart );
+            $dB-> save();
+            $message = "Cart Updated succesfully";
+        }else{
+            $dB                     =   new Appcart;
+            $dB->userId             =   Auth::user()->id;
+            $dB->cart               =   json_encode( $request->cart );
+            $dB-> save();
+            $message = "Cart Created succesfully";
+        }
+        return response()->json([
+            'success'           => true,
+            'message'           =>  $message
+        ]);
+        
     }
 }
 
