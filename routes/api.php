@@ -8,6 +8,7 @@ Route::get('/test', 'App\Http\Controllers\ApiController@test');
 Route::post('/register', 'App\Http\Controllers\AuthController@register');
 Route::post('/login', 'App\Http\Controllers\AuthController@login');
 Route::post('/forgotPassword', 'App\Http\Controllers\AuthController@forgotPassword');
+// Route::get('/searchCourse', 'App\Http\Controllers\ApiController@searchCourse');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/marketing', 'App\Http\Controllers\ApiController@marketing');

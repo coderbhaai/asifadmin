@@ -8,7 +8,7 @@
     <div class="flex grid grid-cols-12 gap-4 gap-x-3 py-3 group">
         @foreach($data as $i)
             <div class="col-span-12 md:col-span-4 p-1">
-                <iframe src="{{$i->video}}" class="w-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/{{$i->video}}" class="w-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         @endforeach
     </div>

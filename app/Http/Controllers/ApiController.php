@@ -35,12 +35,14 @@ class ApiController extends Controller
         $ads = [
             'ad-1.jpg', 'ad-2.jpg', 'ad-3.jpg', 'ad-4.jpg', 'ad-5.jpg',
         ];
+        $videos = ['video 1 URL', 'video 2 URL'];
 
         return response()->json([
             'banner' => $banner,
             'ads' => $ads,
+            'videos' => $videos,
         ]);
-    } 
+    }
 
     public function marketing(){
         $data = Marketing::select('id', 'heading', 'video', 'description')->where('status', 1)->get();
@@ -57,9 +59,12 @@ class ApiController extends Controller
     }
 
     public function courseList(){
-        $data = Course::select('id', 'name', 'image', 'shortdesc', 'price', 'sale')->where('status', 1)->get();
+        $data = Course::select('id', 'name', 'image', 'shortdesc', 'price', 'sale', 'videos as videoArray')->where('status', 1)->get()->map(function($i) {
+            $i['video'] = json_decode($i->videoArray)[0];
+            return $i;
+        });
         return response()->json([
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
@@ -162,6 +167,10 @@ class ApiController extends Controller
     }
 
     public function myOrders(){
+        // return response()->json([
+        //     'check'          => 'Hiiiiiii',
+        //     // 'courses'          => $courses
+        // ]);
         $products =     Order::where('buyer', Auth::user()->id)->where('type', 'Product')
                     ->select( 'orderId', 'id', 'address as addr', 'cart', 'amount', 'status', 'remarks', 'updated_at' )->get()->map(function($i) {
                         $i['cartArray'] = json_decode($i->cart);

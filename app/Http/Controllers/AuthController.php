@@ -116,9 +116,14 @@ class AuthController extends Controller
                     ['token' => $token, 'created_at' => $date]
                 );
 
-            $user_email = $request->email;
-            Mail::to( $user_email)->send(new ForgotPassword($token, $user)); 
-            $response = ['success'=>true, 'message' => "Password Reset Email Sent. Please Check"];
+            // $user_email = $request->email;
+            // Mail::to( $user_email)->send(new ForgotPassword($token, $user)); 
+            $response = [
+                'success'=>true, 
+                'message' => "Password Reset Email Sent. Please Check",
+                'email' => $request->email,
+                'token' => $token
+            ];
         }
         return response()->json($response, 201);
     }
