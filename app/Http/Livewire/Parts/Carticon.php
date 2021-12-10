@@ -27,9 +27,5 @@ class Carticon extends Component
         return view('livewire.parts.carticon');
     }
 
-    public function itemAdded($count){
-        // dd($count);
-        
-        
-        $this->count = $count; }
+    public function itemAdded($count){ $this->count = $count; }
 }
