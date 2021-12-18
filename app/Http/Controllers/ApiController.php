@@ -10,6 +10,7 @@ use App\Models\Master;
 use App\Models\Course;
 use App\Models\Product;
 use App\Models\Profile;
+use App\Models\Wishlist;
 use App\Models\Coursereview;
 use App\Models\Marketing;
 use App\Models\Appcart;
@@ -190,23 +191,24 @@ class ApiController extends Controller
     }
 
     public function paymentCourse(request $request){
-        // foreach ( json_decode($request->courseArray) as $i){
-            $dB                     =   new Order;
-            $dB->paymentId          =   $request->razorpay_payment_id;
-            $dB->orderId            =   $request->razorpay_order_id;
-            $dB->type               =   'Course';
-            $dB->buyer              =   Auth::user()->id;
-            $dB->address            =   json_encode( $request->details );
-            $dB->cart               =   $request->cart;
-            $dB->amount             =   $request->amount;
-            $dB->discount           =   0;
-            $dB->status             =   "Ordered";
-            $dB->remarks            =   "Ordered";
-            $dB-> save();
-        // }
+        $dB                     =   new Order;
+        $dB->paymentId          =   $request->razorpay_payment_id;
+        $dB->orderId            =   $request->razorpay_order_id;
+        $dB->type               =   'Course';
+        $dB->buyer              =   Auth::user()->id;
+        $dB->address            =   json_encode( $request->details );
+        $dB->cart               =   $request->cart;
+        $dB->amount             =   $request->amount;
+        $dB->discount           =   0;
+        $dB->status             =   "Ordered";
+        $dB->remarks            =   "Ordered";
+        $dB-> save();
+
+        // $courses = Order::where('type', 'Course')->where('buyer', Auth::user()->id)->get();
         return response()->json([
             'success'       => true,
             'data'          => $request->all(),
+            // 'courses'       => $courses
         ]);
     }
 
@@ -317,6 +319,57 @@ class ApiController extends Controller
         ]);
         
     }
+
+    public function getWishlist(){
+        $data   =   Wishlist::where('userId', Auth::user()->id)->get()->map(function($i) {
+            $i['wishArray'] = json_decode($i->wish);
+            return $i;
+        });
+        
+        return response()->json([
+            'data'           =>  $data
+        ]);
+    }
+
+    public function addToWishlist(request $request){
+        if ( Wishlist::where('userId', Auth::user()->id)->exists() ) {
+            $dB                     =   Wishlist::where('userId', Auth::user()->id)->first();
+            $wish                   = json_decode( $dB->wish );
+            array_push($wish, $request->id);
+            $dB->wish =             json_encode( array_unique( $wish ));
+            $dB-> save();
+            $message = "Wishlist Updated succesfully";
+        }else{
+            $dB                     =   new Wishlist;
+            $dB->userId             =   Auth::user()->id;
+            $dB->wish               =   json_encode( [$request->id] );
+            $dB-> save();
+            $message = "Wishlist Created succesfully";
+        }
+        return response()->json([
+            'success'           => true,
+            'message'           =>  $message
+        ]);        
+    }
+
+    public function removeFromWishlist(request $request){
+        if ( Wishlist::where('userId', Auth::user()->id)->exists() ) {
+            $dB                     =   Wishlist::where('userId', Auth::user()->id)->first();
+            $wish                   = json_decode( $dB->wish );
+            $wish = array_diff( $wish ,[$request->id]);
+            $dB->wish =             json_encode($wish);
+            $dB-> save();
+            $message = "Wishlist Updated succesfully";
+        }else{
+            $message = "No Wishlist exists";
+        }
+        return response()->json([
+            'success'           => true,
+            'message'           =>  $message
+        ]);        
+    }
+
+
 }
 
 // ['name','email','phone','country','state','city','address','pin']

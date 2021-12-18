@@ -62,6 +62,7 @@
                 <li><a href="" class="block pb-2 text-white">Our Gallery</a></li>
             </ul>
         </div>
+    </div>
 </footer>
 <div class="md:flex items-center justify-between px-4 bg-dark py-3" style="background: #020a07">
     <p class="text-center text-white text-xs md:text-sm">© Copyright 2021-AB Services Pvt Ltd | All Rights Reserved</p>
