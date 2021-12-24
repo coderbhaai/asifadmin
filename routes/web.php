@@ -39,6 +39,7 @@ use App\Http\Livewire\Admin\Coursereviews;
 use App\Http\Livewire\Admin\Adminmarketing;
 use App\Http\Livewire\Admin\Adminorders;
 use App\Http\Livewire\Admin\Adminmedia;
+use App\Http\Livewire\Admin\Notification;
 
 use App\Http\Livewire\User\Userorders;
 
@@ -88,6 +89,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/marketing', Adminmarketing::class)->name('adminmarketing');
         Route::get('/admin/orders', Adminorders::class)->name('adminorders');
         Route::get('/admin/media', Adminmedia::class)->name('adminmedia');
+        Route::get('/admin/notification', Notification::class)->name('notification');
     });
     Route::middleware(['user'])->group(function () {
         Route::get('/user/orders', Userorders::class)->name('userorders');

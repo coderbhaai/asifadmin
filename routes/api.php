@@ -11,6 +11,8 @@ Route::post('/forgotPassword', 'App\Http\Controllers\AuthController@forgotPasswo
 // Route::get('/searchCourse', 'App\Http\Controllers\ApiController@searchCourse');
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/addMobileId', 'App\Http\Controllers\AuthController@addMobileId');
+
     Route::get('/marketing', 'App\Http\Controllers\ApiController@marketing');
     Route::get('/staticData', 'App\Http\Controllers\ApiController@staticData');
     Route::get('/products', 'App\Http\Controllers\ApiController@products');

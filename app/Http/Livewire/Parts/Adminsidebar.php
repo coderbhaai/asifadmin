@@ -22,6 +22,7 @@ class Adminsidebar extends Component
         [ "link"=>"adminmarketing", "name"=>"Videos" ],
         [ "link"=>"adminorders", "name"=>"Orders" ],
         [ "link"=>"adminmedia", "name"=>"Media" ],
+        [ "link"=>"notification", "name"=>"Notifications" ],
     ];
 
     public function render(){

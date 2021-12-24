@@ -7,6 +7,7 @@ use Auth;
 use Hash;
 use Mail;
 use App\Models\User;
+use App\Models\Mobiles;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPassword;
 use Illuminate\Support\Facades\Password; 
@@ -105,6 +106,16 @@ class AuthController extends Controller
             Password::sendResetLink($credentials);
             $response = ['success'=>true, "message" => 'Reset password link sent on your email id.'];
         }
+        return response()->json($response, 201);
+    }
+
+    public function addMobileId(Request $request){
+        $dB                     =   new Mobiles;
+        $dB->userId             =   Auth::user()->id;
+        $dB->mobile             =   $request->mobile;
+        $dB-> save();
+
+        $response = ['success'=>true, 'message' => "Mobile saved succesfully"];
         return response()->json($response, 201);
     }
 }
