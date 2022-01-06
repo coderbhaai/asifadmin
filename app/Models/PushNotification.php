@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PushNotification extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'body', 'img'];
+    protected $fillable = ['body'];
     public function scopeSearch($query, $val){
         return $query
-        ->where('title', 'like', '%'.$val.'%')
-        ->Orwhere('body', 'like', '%'.$val.'%');
+        ->where('body', 'like', '%'.$val.'%');
     }
 }

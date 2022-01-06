@@ -30,8 +30,7 @@
                 <thead class="justify-between">
                 <tr class="bg-primary">
                     <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('id')"><span class="text-white">#</span> @include('partials.sorticon', ['field'=>'id'])</th>
-                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('type')"><span class="text-white">Title</span></th>
-                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('name')"><span class="text-white">Body || URL</span></th>
+                    <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('name')"><span class="text-white">Message</span></th>
                     <th class="py-2 relative hover:cursor-pointer" wire:click="sortBy('updated_at')"><span class="text-white">Date</span> @include('partials.sorticon', ['field'=>'updated_at'])</th>
                 </tr>
                 </thead>
@@ -39,7 +38,6 @@
                     @foreach($data as $i)
                         <tr class="">
                             <td class="px-1 py-1 text-sm text-center">{{ $loop->index +1}}</td>
-                            <td class="px-1 py-1 text-sm">{{$i->title}}</td>
                             <td class="px-1 py-1 text-sm">{{$i->body}}</td>
                             <td class="px-1 py-1 text-sm">{{date('d-m-Y', strtotime($i->updated_at))}}</td>
                         </tr>
@@ -61,11 +59,6 @@
                             <form wire:submit.prevent="submit" method="POST">
                                 <div class="bg-white">
                                     <div class="grid grid-cols-12 gap-6">
-                                        <div class="col-span-12">
-                                            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                                            <input type="text" wire:model="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Add title" required/>
-                                            @error('title') <span class="error" ...>{{ $message }}</span> @enderror
-                                        </div>
                                         <div class="col-span-12">
                                             <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
                                             <textarea wire:model="body" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-40" placeholder="Add body" required></textarea>
