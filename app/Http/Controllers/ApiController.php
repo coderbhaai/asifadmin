@@ -140,7 +140,7 @@ class ApiController extends Controller
         ]);
     }
 
-    public function singleProduct($id){
+    public function singleProduct($id){ 
         $reviews =  Coursereview::leftJoin('users as b', function($join) { $join->on("b.id", "=", "coursereviews.userid"); })
                         ->where("coursereviews.status", 1)
                         ->where("coursereviews.courseid", $id)
@@ -148,10 +148,17 @@ class ApiController extends Controller
                         ->select('coursereviews.id', 'coursereviews.review', 'coursereviews.rating', 'b.name as userName' )
                         ->get();
 
-        $data = Product::select('id', 'name', 'images', 'shortdesc', 'longdesc', 'price', 'sale', 'rating' )
-                ->where('id', $id)->first();
+        // $data = Product::select('id', 'name', 'images', 'shortdesc', 'longdesc', 'price', 'sale', 'rating' )
+        //         ->where('id', $id)->first();
+
+        $data = Product::select('id', 'name', 'images', 'shortdesc', 'longdesc', 'price', 'sale', 'rating' )->where('id', $id)->get()->map(function($i) {
+            $i['stars'] = json_decode($i->rating);
+            return $i;
+        });    
+
+
         return response()->json([
-            'data'          => $data,
+            'data'          => $data[0],
             'reviews'       => $reviews
         ]);
     }
@@ -178,6 +185,7 @@ class ApiController extends Controller
                         $cart = [];
                         foreach(json_decode($i->cart) as $j){
                             $j->imgArray = json_decode($j->images);
+                            $j->idArray = [$j->id];
                             array_push( $cart, $j );
                         }
                         $i['cartArray'] = $cart;
