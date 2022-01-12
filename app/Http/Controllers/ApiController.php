@@ -182,13 +182,14 @@ class ApiController extends Controller
         // ]);
         $products =     Order::where('buyer', Auth::user()->id)->where('type', 'Product')
                     ->select( 'orderId', 'id', 'address as addr', 'cart', 'amount', 'status', 'remarks', 'updated_at' )->get()->map(function($i) {
-                        $cart = [];
-                        foreach(json_decode($i->cart) as $j){
-                            $j->imgArray = json_decode($j->images);
-                            $j->idArray = [$j->id];
-                            array_push( $cart, $j );
-                        }
-                        $i['cartArray'] = $cart;
+                        // $cart = [];
+                        // foreach(json_decode($i->cart) as $j){
+                        //     $j->imgArray = json_decode($j->images);
+                        //     $j->idArray = [$j->id];
+                        //     array_push( $cart, $j );
+                        // }
+                        // $i['cartArray'] = $cart;
+                        $i['cartArray'] = json_decode($i->cart);
                         $i['addressArray'] = json_decode($i->addr);
                         return $i;
                     });
@@ -329,8 +330,7 @@ class ApiController extends Controller
         return response()->json([
             'success'           => true,
             'message'           =>  $message
-        ]);
-        
+        ]);        
     }
 
     public function getWishlist(){

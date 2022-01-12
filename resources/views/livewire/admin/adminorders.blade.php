@@ -40,7 +40,7 @@
                         <tr class="">
                             <td class="px-1 py-1 text-center">{{ $loop->index +1}}</td>
                             <td class="px-1 py-1">{{$i->name}}<br/>{{$i->email}}</td>
-                            <td class="px-1 py-1"><a href="/course/{{$i->courseUrl}}" target="_blank">{{$i->courseName}}</a></td>
+                            <td class="px-1 py-1"><a href="/course/{{$i->courseUrl}}" target="_blank">{{$i->courseName}}</td>
                             <td class="px-1 py-1">{{$i->amount}} | {{$i->discount}}</td>
                             <td class="px-1 py-1">{{$i->status}}</td>
                             <td class="px-1 py-1">{{date('d-m-Y', strtotime($i->updated_at))}}</td>
@@ -55,7 +55,7 @@
                             <td class="px-1 py-1">{{$i->name}}<br/>{{$i->email}}</td>
                             <td class="px-1 py-1">
                                 @foreach($i->cart as $j)
-                                    <p><a href="/product/{{$j->url}}">{{$j->name}} Price: {{$j->price}} Sale: {{$j->sale}} X {{$j->amount}} Units</a></p>
+                                    <p>Price: {{$j->price}}  X {{$j->quan}} Units</p> 
                                 @endforeach
                             </td>
                             <td class="px-1 py-1">{{$i->amount}} | {{$i->discount}}</td>
