@@ -55,7 +55,7 @@
                             <td class="px-1 py-1">{{$i->name}}<br/>{{$i->email}}</td>
                             <td class="px-1 py-1">
                                 @foreach($i->cart as $j)
-                                    <p>Price: {{$j->price}}  X {{$j->quan}} Units</p> 
+                                    <p>Price: {{$j['price']}}  X {{$j['quan']}} Units</p> 
                                 @endforeach
                             </td>
                             <td class="px-1 py-1">{{$i->amount}} | {{$i->discount}}</td>

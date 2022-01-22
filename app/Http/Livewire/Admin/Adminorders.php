@@ -26,7 +26,7 @@ class Adminorders extends Component
                         ->orderBy($this->sortBy, $this->sortDirection)
                         ->paginate($this->perPage);
         $data->getCollection()->transform(function ($i) {
-            $i['cart']  =   json_decode( $i->encodedCart );
+            $i['cart']  =   json_decode( $i->encodedCart, true );
             $i['address']  =   json_decode( $i->addr );
             return $i;
         });
