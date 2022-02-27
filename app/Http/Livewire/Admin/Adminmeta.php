@@ -61,7 +61,7 @@ class Adminmeta extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', $this->data_id ? 'Meta Updated Successfully.' : 'Meta Created Successfully.'); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => $this->data_id ? 'Meta Updated Successfully.' : 'Meta Created Successfully.', 'timer'=>3000 ]);
         $this->closeModal();
         $this->resetInputFields();
     }

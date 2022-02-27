@@ -40,7 +40,7 @@ class Singlecomments extends Component
             'status' =>  0
         ]);
         $this->resetInputFields();
-        session()->flash('message', 'Comment sent for approval.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Comment sent for approval.', 'timer'=>3000 ]);
     }
 
     private function resetInputFields(){

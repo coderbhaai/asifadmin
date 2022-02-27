@@ -52,7 +52,7 @@ class Adminmedia extends Component
         Media::create([
             'name' => $fileName1,
         ]);
-        session()->flash('message', 'Media Uploaded Successfully.'); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' =>'Media Updated Successfully.', 'timer'=>3000 ]);
         $this->closeModal();
         $this->resetInputFields();
     }

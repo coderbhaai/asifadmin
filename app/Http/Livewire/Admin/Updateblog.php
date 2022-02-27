@@ -90,7 +90,8 @@ class Updateblog extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Blog Updated Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Blog Updated Successfully.', 'timer'=>3000 ]);
+
         return redirect(route('adminblog') );
     }
     

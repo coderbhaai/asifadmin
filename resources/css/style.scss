@@ -74,6 +74,34 @@ nav{
 .mobile{
     display: none
 }
+.swal-overlay{
+    background: transparent;
+    .swal-modal{
+        position: absolute;
+        bottom: 3em;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: unset;
+        background: $action;
+        border-radius: 5px 0 0 5px;
+        z-index: 100;
+        .swal-title{
+            margin: 0;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 400;
+        }
+        .swal-footer{
+            margin: 0;
+            padding: 0;
+            .swal-button{
+                background: $primary;
+            }
+        }
+    }
+}
 @media (max-width:767px) {
     .web{
         display: none !important;

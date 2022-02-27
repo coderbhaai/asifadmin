@@ -48,7 +48,6 @@ class Cart extends Component
     public function addToCart($i){
         if(Cookie::get('productbasket')){
             $exists = $this->addIncart($i['id']);
-            session()->flash('message', 'Cart Updated Successfully.');
             if(!$exists){ 
                 $productInCart = json_decode( Cookie::get('productbasket') );
                 array_push( $productInCart, [ $i['id'], 1 ] ); 
@@ -94,7 +93,7 @@ class Cart extends Component
                     $this->sendCartNumber( $courseInCart, $this->productbasket);
                 }
             }
-            session()->flash('message', 'Cart Updated Successfully.');
+            
         }
     }
 
@@ -158,7 +157,8 @@ class Cart extends Component
     public function sendCartNumber( $coursebasket, $productbasket ){
         $count = 0;
         if(Cookie::get('productbasket')){ foreach ($productbasket as $i) { $count += $i[1]; } }
-        if(Cookie::get('coursebasket')){ $count += count( $coursebasket );         }
+        if(Cookie::get('coursebasket')){ $count += count( $coursebasket ); }
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Cart Updated Successfully.', 'timer'=>3000 ]);
         $this->emit('itemAdded', $count);
     }
 }

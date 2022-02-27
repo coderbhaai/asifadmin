@@ -90,7 +90,7 @@ class Adminmaster extends Component
             'tab2' => $this->tab2,
             'url'  => $url,
         ]);
-        session()->flash('message', $this->data_id ? 'Master Updated Successfully.' : 'Master Created Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => $this->data_id ? 'Master Updated Successfully.' : 'Master Created Successfully.', 'timer'=>3000 ]);
         $this->resetInputFields();
     }
 

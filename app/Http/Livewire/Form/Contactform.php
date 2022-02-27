@@ -47,7 +47,7 @@ class Contactform extends Component
         $user_email = $this->email;
         Mail::to( $user_email)->cc('amit@amitkk.com')->send(new ContactMail($xx));
 
-        session()->flash('message', 'Form Submitted Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Form Submitted Successfully.', 'timer'=>3000 ]);
         return redirect(route('thankyou') );
     }
 }

@@ -32,8 +32,7 @@ class Reviewform extends Component
             'rating' => $this->star,
             'status' => 0,
         ]);
-
-        session()->flash('message', 'Review submitted for approval.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Review submitted for approval.', 'timer'=>3000 ]);
         return redirect(route('thankyou') );
     }
 }

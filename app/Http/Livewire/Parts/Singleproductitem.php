@@ -16,7 +16,7 @@ class Singleproductitem extends Component
     public function addToCart($i){
         if(Cookie::get('productbasket')){
             $exists = $this->addIncart($i['id']);
-            session()->flash('message', 'Cart Updated Successfully.');
+            $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Cart Updated Successfully.', 'timer'=>3000 ]);
             if(!$exists){
                 $productInCart = json_decode( Cookie::get('productbasket') );
                 array_push( $productInCart, [ $i['id'], 1 ] ); 

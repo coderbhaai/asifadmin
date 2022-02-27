@@ -46,14 +46,14 @@ class Singlecourse extends Component
                 array_push( $courseInCart, $id );
                 Cookie::queue( 'coursebasket', json_encode( $courseInCart ) );
                 $this->sendCartNumber( $courseInCart );
-                session()->flash('message', 'Cart Updated Successfully.');
+                $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Cart Updated Successfully.', 'timer'=>3000 ]);
             }else{
-                session()->flash('message', 'Course exists in cart');
+                $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Course exists in cart', 'timer'=>3000 ]);
             }
         }else{
             Cookie::queue( 'coursebasket', json_encode( [$id] ) ); 
             $this->sendCartNumber( [$id] );
-            session()->flash('message', 'Cart Updated Successfully.');
+            $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Cart Updated Successfully.', 'timer'=>3000 ]);
         }
         
     }

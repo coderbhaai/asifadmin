@@ -70,7 +70,7 @@ class Adminblogmeta extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', $this->data_id ? 'Blog Meta Updated Successfully.' : 'Blog Meta Created Successfully.'); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => $this->data_id ? 'Blog Meta Updated Successfully.' : 'Blog Meta Created Successfully.', 'timer'=>3000 ]);
         $this->closeModal();
         $this->resetInputFields();
     }

@@ -58,7 +58,7 @@ class Admincomments extends Component
             'comment' => $this->comment,
             'status' => $this->status
         ]);
-        session()->flash('message', 'Comment Updated Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Comment Updated Successfully.', 'timer'=>3000 ]);
         $this->resetInputFields();
     }
 

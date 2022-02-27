@@ -26,7 +26,7 @@ class Subscribe extends Component
         $user_email = $this->email;
         Mail::to( $user_email)->cc('amit@amitkk.com')->send(new Subscribemail);
         $this->email = '';
-        session()->flash('message', 'You subscribed Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'You subscribed Successfully.', 'timer'=>3000 ]);
         return redirect(route('thankyou') );
     }
 }

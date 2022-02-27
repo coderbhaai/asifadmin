@@ -107,7 +107,7 @@ class Updateproduct extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Product Updated Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Product Updated Successfully.', 'timer'=>3000 ]);
         return redirect(route('adminproducts') );
     }
 }

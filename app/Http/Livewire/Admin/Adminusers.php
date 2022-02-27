@@ -67,8 +67,7 @@ class Adminusers extends Component
             'role' => $this->role,
             'status' => $this->status,
         ]);
-
-        session()->flash('message', 'User Updated Successfully.'); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'User Updated Successfully.', 'timer'=>3000 ]);
         $this->closeModal();
     }
 }

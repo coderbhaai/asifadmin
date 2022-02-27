@@ -68,4 +68,4 @@
     <p class="text-center text-white text-xs md:text-sm">© Copyright 2021-AB Services Pvt Ltd | All Rights Reserved</p>
     <p class="text-center text-white text-xs md:text-sm">Designed & Developed By <a href="https://www.amitkk.com/" target="_blank">AMITKK</a></p>
 </div>
-<a target="_blank" href="//api.whatsapp.com/send?phone=919821412005&amp;text=%20Hi,%20I%20got%20your%20number%20from%20AminaBoutique%20Website." class="whats fixed w-10"><img src="/images/icons/whatsapp-button.svg" alt="Connect with SBS Legal Solutions" width="50" height="50"></a>
+<a target="_blank" href="//api.whatsapp.com/send?phone=918860206392&amp;text=%20Hi,%20I%20got%20your%20number%20from%20AminaBoutique%20Website." class="whats fixed w-10"><img src="/images/icons/whatsapp-button.svg" alt="Connect with SBS Legal Solutions" width="50" height="50"></a>

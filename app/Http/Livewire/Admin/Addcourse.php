@@ -53,7 +53,7 @@ class Addcourse extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Course created Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Course Created Successfully', 'timer'=>3000 ]);
         return redirect(route('admincourses') );
     }
 

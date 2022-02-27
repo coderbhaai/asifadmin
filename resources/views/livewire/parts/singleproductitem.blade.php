@@ -8,12 +8,11 @@
                 <h2 class="text-xl text-center font-bold mt-5">{{$item->name}}</h2>
             </a>
             <div class="flex items-center justify-between">
-                <p class="text-center">&#8377; {{$item->sale}}</p>
+                <p class="text-center">
+                    @if((int)$item->price > (int)$item->sale)<del>&#8377;{{$item->price}}</del>@endif
+                    &#8377; {{$item->sale}}</p>
                 <button wire:click="addToCart({{$item}})" class="text-white text-center px-3 py-1 font-semibold text-xs rounded-full bg-green">Add To cart</button>
             </div>
         </div>
     </div>
-    @if(session('message'))
-        @livewire('parts.sweetalert', ['message' => session('message') ])
-    @endif
 </div>

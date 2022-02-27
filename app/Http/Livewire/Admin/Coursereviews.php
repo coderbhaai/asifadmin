@@ -54,8 +54,7 @@ class Coursereviews extends Component
             'review' => $this->review,
             'status' => $this->status,
         ]);
-
-        session()->flash('message', 'Review updated Successfully.'); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Review Updated Successfully.', 'timer'=>3000 ]);
         $this->closeModal();
         $this->resetInputFields();
     }

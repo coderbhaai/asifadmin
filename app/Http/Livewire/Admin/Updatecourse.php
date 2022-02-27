@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Meta;
 use App\Models\Course;
+use File;
 use Livewire\WithFileUploads;
 
 class Updatecourse extends Component
@@ -83,7 +84,7 @@ class Updatecourse extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Course updated successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Course Updated Successfully.', 'timer'=>3000 ]);
         return redirect(route('admincourses') );
     }
 

@@ -62,7 +62,7 @@ class Adminmarketing extends Component
             'description' => $this->description,
             'status' => $this->status
         ]);
-        session()->flash('message', $this->data_id ? 'Marketing Updated Successfully.' : 'Marketing Created Successfully.'); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => $this->data_id ? 'Marketing Updated Successfully.' : 'Marketing Created Successfully.', 'timer'=>3000 ]);
         $this->closeModal();
         $this->resetInputFields();
     }

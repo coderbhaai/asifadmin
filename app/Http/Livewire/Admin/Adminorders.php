@@ -82,7 +82,7 @@ class Adminorders extends Component
         ]);
         $this->closeModal();
         $this->resetInputFields();
-        session()->flash('message', $this->data_id ? 'Order Updated Successfully.' : 'Order Created Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => $this->data_id ? 'Order Updated Successfully.' : 'Order Created Successfully.', 'timer'=>3000 ]);
     }
 
     public function closeModal(){ $this->resetInputFields(); }

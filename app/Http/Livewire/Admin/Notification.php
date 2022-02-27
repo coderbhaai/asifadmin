@@ -52,9 +52,7 @@ class Notification extends Component
         PushNotification::create([
             'body' => $this->body,
         ]);
-        // dd($response);
-
-        session()->flash('message', $response ); 
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => $response, 'timer'=>3000 ]);
         $this->closeModal();
         $this->resetInputFields();
     }

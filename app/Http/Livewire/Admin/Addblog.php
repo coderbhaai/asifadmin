@@ -56,7 +56,7 @@ class Addblog extends Component
             'title' => $this->title,
             'description' => $this->description
         ]);
-        session()->flash('message', 'Blog Created Successfully.');
+        $this->dispatchBrowserEvent('swal:modal', [ 'message' => 'Blog Created Successfully', 'timer'=>3000 ]);
         return redirect(route('adminblog') );
     }    
 }
