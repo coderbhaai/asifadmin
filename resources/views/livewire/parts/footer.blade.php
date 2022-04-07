@@ -29,16 +29,16 @@
         <div class="rounded col-span-12 md:col-span-3 p-4">
             <h3 class="text-center text-white text-xl md:text-3xl font-bold mb-6">AB SERVICES PVT LTD</h3>
             <ul>
-                <li><a href="" class="block pb-2 text-white">About Us</a></li>
-                <li><a href="" class="block pb-2 text-white">Contact Us</a></li>
+                <li><a href="{{route('tnc')}}" class="block pb-2 text-white">Terms & Conditions</a></li>
+                <li><a href="{{route('privacy')}}" class="block pb-2 text-white">Privacy policy</a></li>
+                <!-- <li><a href="" class="block pb-2 text-white">Contact Us</a></li>
                 <li><a href="" class="block pb-2 text-white">Locate Us</a></li>
                 <li><a href="" class="block pb-2 text-white">Press</a></li>
                 <li><a href="" class="block pb-2 text-white">Careers</a></li>
-                <li><a href="" class="block pb-2 text-white">Terms & Conditions</a></li>
-                <li><a href="" class="block pb-2 text-white">Corporate Governance</a></li>
+                <li><a href="" class="block pb-2 text-white">Corporate Governance</a></li> -->
             </ul>
         </div>
-        <div class="rounded col-span-12 md:col-span-3 p-4">
+        <!-- <div class="rounded col-span-12 md:col-span-3 p-4">
             <h3 class="text-center text-white text-xl md:text-3xl font-bold mb-6">POLICIES</h3>
             <ul>
                 <li><a href="" class="block pb-2 text-white">Company Policy</a></li>
@@ -61,7 +61,7 @@
                 <li><a href="" class="block pb-2 text-white">Call Us</a></li>
                 <li><a href="" class="block pb-2 text-white">Our Gallery</a></li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </footer>
 <div class="md:flex items-center justify-between px-4 bg-dark py-3" style="background: #020a07">

@@ -8,6 +8,7 @@ use App\Http\Livewire\Pages\Fourofour;
 use App\Http\Livewire\Pages\Sitemap;
 use App\Http\Livewire\Pages\Thankyou;
 use App\Http\Livewire\Pages\Privacy;
+use App\Http\Livewire\Pages\Tnc;
 use App\Http\Livewire\Pages\Videos;
 
 use App\Http\Livewire\Ecom\Shop;
@@ -51,6 +52,7 @@ Route::get("/404", Fourofour::class)->name('404');
 Route::get("/sitemap", Sitemap::class)->name('sitemap');
 Route::get("/thankyou", Thankyou::class)->name('thankyou');
 Route::get("/privacy-policy", Privacy::class)->name('privacy');
+Route::get("/terms-and-conditions", Tnc::class)->name('tnc');
 Route::get("/videos", Videos::class)->name('videos');
 
 Route::get("/shop", Shop::class)->name('shop');
